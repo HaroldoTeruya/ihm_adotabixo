@@ -293,6 +293,7 @@ function getDataCourse(title)
 var rep_list = [
   {
     name: "Rep1",
+    id: 0,
     vacancy: 2,
     gender: "f",
     owner:{
@@ -313,6 +314,7 @@ var rep_list = [
   },
   {
     name: "Rep2",
+    id: 1,
     vacancy: 2,
     gender: "f",
     owner:{
@@ -333,6 +335,7 @@ var rep_list = [
   },
   {
     name: "Rep3",
+    id: 2,
     vacancy: 2,
     gender: "m",
     owner:{
@@ -353,6 +356,7 @@ var rep_list = [
   },
   {
     name: "Rep4",
+    id: 3,
     vacancy: 4,
     gender: "m",
     owner:{
@@ -484,9 +488,59 @@ $("#nmb_vacancy").change(function() {
 
 });
 
-function general_search(str_search){
 
+function search_veteran(str_search){
+    var result_list = []
+    var items = veteran_list;
+    for(var i = 0; i < items.length; i++)
+    {
+        if (items[i].name.indexOf(str_search) >= 0){
+            result_list.push(items[i]);
+        }
+    }
+    return result_list;
 };
+
+
+function search_freshman(str_search){
+    var result_list = []
+    var items = freshman_list;
+    for(var i = 0; i < items.length; i++)
+    {
+        if (items[i].name.indexOf(str_search) >= 0){
+            result_list.push(items[i]);
+        }
+    }
+    return result_list;
+};
+
+
+function search_rep(str_search){
+    var result_list = []
+    var items = rep_list;
+    for(var i = 0; i < items.length; i++)
+    {
+        if (items[i].name.indexOf(str_search) >= 0){
+            result_list.push(items[i]);
+        }
+    }
+    return result_list;
+};
+
+
+function general_search(str_search){
+    vet_filtered_list = search_veteran(str_search);
+    fresh_filtered_list = search_freshman(str_search);
+    rep_filtered_list = search_rep(str_search);
+    populateVeterans(vet_filtered_list);
+    populateFreshmans(fresh_filtered_list);
+    hide_all();
+    for (var i=0; i< rep_filtered_list.length; i++){
+        marker_list[rep_filtered_list[i].id].setMap(map);
+    }
+};
+
+
 $("#ipt_search").keyup(function() {
   general_search(this.value);
 });
