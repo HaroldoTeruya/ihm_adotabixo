@@ -138,10 +138,27 @@ function freshman_from_course()
 {
   return [];
 };
-function populateVeterans()
+function cleanVeterans()
 {
   var list = document.getElementById("veteran_list");
-  var items = veteran_list;
+  while (list.hasChildNodes())
+  {
+    list.removeChild(list.lastChild);
+  }
+}
+function cleanFreshmans()
+{
+  var list = document.getElementById("freshman_list");
+  while (list.hasChildNodes())
+  {
+    list.removeChild(list.lastChild);
+  }
+}
+function populateVeterans(items)
+{
+  var list = document.getElementById("veteran_list");
+  cleanVeterans();
+
   var elements = "";
   for(var i = 0; i < items.length; i++)
   {
@@ -165,10 +182,11 @@ function populateVeterans()
   list.innerHTML = list.innerHTML + elements;
 };
 
-function populateFreshmans()
+function populateFreshmans(items)
 {
   var list = document.getElementById("freshman_list");
-  var items = freshman_list;
+  cleanFreshmans();
+
   var elements = "";
   for(var i = 0; i < items.length; i++)
   {
@@ -212,12 +230,12 @@ function populateFilters(list,selectId)
 
 $(document).ready(function()
 {
-  populateVeterans();
-  populateFreshmans();
-
+  populateVeterans(veteran_list);
+  populateFreshmans(freshman_list);
   populateFilters([{name:"-"},{name:"São Paulo"},{name:"Rio de Janeiro"}],"estado");
 
-  // populateFilters([{name:"CC"},{name:"Geo"},{name:"Direito"}],"curso");
+  populateVeterans(veteran_from_state());
+  populateFreshmans(freshman_from_state());
 });
 
 function getDataState(title)
@@ -228,6 +246,9 @@ function getDataState(title)
     populateFilters([{name:"-"}],"universidade");
     populateFilters([{name:"-"}],"campus");
     populateFilters([{name:"-"}],"curso");
+
+    cleanFreshmans();
+    cleanVeterans();
   }
   else if( title == "São Paulo" )
   {
@@ -235,6 +256,9 @@ function getDataState(title)
     populateFilters([{name:"UNESP"},{name:"UNOESTE"}],"universidade");
     populateFilters([{name:"FCT"}],"campus");
     populateFilters([{name:"CC"},{name:"Geo"}],"curso");
+
+    populateVeterans(veteran_from_course());
+    populateFreshmans(freshman_from_course());
   }
   else
   {
@@ -242,6 +266,9 @@ function getDataState(title)
     populateFilters([{name:"UFRJ"}],"universidade");
     populateFilters([{name:"-"}],"campus");
     populateFilters([{name:"-"}],"curso");
+
+    cleanFreshmans();
+    cleanVeterans();
   }
 }
 
@@ -252,11 +279,17 @@ function getDataCity(title)
     populateFilters([{name:"UNESP"},{name:"UNOESTE"}],"universidade");
     populateFilters([{name:"FCT"}],"campus");
     populateFilters([{name:"CC"},{name:"Geo"}],"curso");
+
+    populateVeterans(veteran_from_course());
+    populateFreshmans(freshman_from_course());
   }
   else
   {
     populateFilters([{name:"-"}],"universidade");
     populateFilters([{name:"-"}],"campus");
+
+    cleanFreshmans();
+    cleanVeterans();
   }
 }
 
@@ -266,11 +299,17 @@ function getDataUnivesity(title)
   {
     populateFilters([{name:"FCT"}],"campus");
     populateFilters([{name:"CC"},{name:"Geo"}],"curso");
+
+    populateVeterans(veteran_from_course());
+    populateFreshmans(freshman_from_course());
   }
   else
   {
     populateFilters([{name:"FIPP"}],"campus");
     populateFilters([{name:"-"}],"curso");
+
+    cleanFreshmans();
+    cleanVeterans();
   }
 }
 
@@ -279,16 +318,31 @@ function getDataCampus(title)
   if( title == "FCT" )
   {
     populateFilters([{name:"CC"},{name:"Geo"}],"curso");
+
+    populateVeterans(veteran_from_course());
+    populateFreshmans(freshman_from_course());
   }
   else
   {
     populateFilters([{name:"-"}],"curso");
+
+    cleanFreshmans();
+    cleanVeterans();
   }
 }
 
 function getDataCourse(title)
 {
-
+  if( title == "CC" )
+  {
+    populateVeterans(veteran_from_course());
+    populateFreshmans(freshman_from_course());
+  }
+  else
+  {
+    cleanFreshmans();
+    cleanVeterans();
+  }
 }
 var rep_list = [
   {
@@ -483,7 +537,6 @@ $("#nmb_vacancy").change(function() {
   }
 
 });
-
 function general_search(str_search){
 
 };
