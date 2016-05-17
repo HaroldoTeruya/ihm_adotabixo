@@ -20,10 +20,11 @@
 <body>
 
   <nav class="navbar navbar-default navbar-fixed-top">
+      <a class="navbar-brand" href="#">AdotaBixo</a>
   </nav>
 
-  <div class="main-content">
-    <div class="side-bar">
+  <div class="container-fluid main-content">
+    <div class="col-sm-3">
 
       <div class="well well-sm">
         <p>Estado:</p>
@@ -53,7 +54,7 @@
     </div>
     <!-- PLACE -->
 
-    <div class="content">
+    <div class="col-sm-9">
       <div class="">
         <!-- SEARCH BOX -->
         <div class="col-lg-12 col_center">
@@ -70,14 +71,26 @@
           <div class="panel with-nav-tabs panel-default">
             <div class="panel-heading">
               <ul class="nav nav-tabs nav-justified">
-                <li class="active"><a href="#tab1default" data-toggle="tab">Bixos</a></li>
+                <li><a href="#tab1default" data-toggle="tab">Bixos</a></li>
                 <li><a href="#tab2default" data-toggle="tab">Veteranos</a></li>
-                <li><a href="#tab3default" data-toggle="tab">Repúblicas</a></li>
+                <li class="active"><a href="#tab3default" data-toggle="tab">Repúblicas</a></li>
               </ul>
             </div>
             <div class="panel-body">
               <div class="tab-content">
-                <div class="tab-pane fade in active" id="tab1default">
+                <div class="tab-pane fade in" id="tab1default">
+                  <div class="col-lg-12">
+                    <div class="list-group" id="freshman_list">
+                    </div>
+                  </div>
+                </div>
+                <div class="tab-pane fade" id="tab2default">
+                  <div class="col-lg-12">
+                    <div class="list-group" id="veteran_list">
+                    </div>
+                  </div>
+                </div>
+                <div class="tab-pane fade in active" id="tab3default">
                   <div class="col-sm-6 col_center">
                     <h5> Exibir repúblicas: </h5>
                     <input id="ckb_male" type="checkbox" name="male" value="male" checked> Masculina
@@ -150,18 +163,6 @@
                         </div>
                       </li>
                     </ul>
-                  </div>
-                </div>
-                <div class="tab-pane fade" id="tab2default">
-                  <div class="col-lg-12">
-                    <div class="list-group" id="veteran_list">
-                    </div>
-                  </div>
-                </div>
-                <div class="tab-pane fade in active" id="tab3default">
-                  <div class="col-lg-12">
-                    <div class="list-group" id="freshman_list">
-                    </div>
                   </div>
                 </div>
               </div>
