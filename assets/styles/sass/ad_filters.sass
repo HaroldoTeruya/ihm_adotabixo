@@ -1,0 +1,33 @@
+$min_width: 840px
+$default_margin: 15px
+$ad_div_margin_left: 350px
+$default_max_image_size: 250px
+
+.filters
+  padding: $default_margin
+  padding-bottom: $default_margin + 30
+  overflow: hidden
+  @media screen and (min-width: $min_width)
+    width: $ad_div_margin_left
+    float: left
+    padding-right: $default_margin
+    position: absolute
+    max-height: 100%
+    overflow-y: auto
+  .box .panel-body
+    padding-left: $default_margin
+    padding-top: $default_margin
+    padding-right: $default_margin
+    padding-bottom: 0
+  @media screen and (max-width: $min_width)
+    .box
+      overflow: auto
+      .panel
+        &:first-child
+          float: left
+          width: 49%
+          margin-right: 1%
+        &:last-child
+          float: left
+          width: 49%
+          margin-left: 1%

@@ -1,0 +1,66 @@
+$min_ad_single_width: 550px
+
+.ad-collection
+  .ad
+    position: relative
+  .value
+    font-size: 17px
+    right: 0
+    position: absolute
+    z-index: 1
+    margin-top: 15px
+    margin-right: 15px
+    .item,
+      margin-bottom: 5px
+  .title
+    position: relative
+    overflow: auto
+    margin-left: 15px
+    margin-right: 15px
+    margin-top: 15px
+    border-bottom: 1px solid #ddd
+    h4
+      float: left
+      font-weight: 800 !important
+  .options
+    overflow: auto
+    height: 40px
+    margin-bottom: 15px
+    .detail
+      float: left
+    .maps
+      float: left
+      margin-left: 4px
+      padding: 6px 9px
+    .accept
+      float: right
+    .social
+      margin-left: 4px
+      float: left
+  .box
+    overflow: auto
+    .image
+      float: left
+      width: 100%
+      margin-bottom: 15px
+      @media screen and (min-width: $min_ad_single_width)
+        padding-right: 15px
+        width: 25%
+        margin-bottom: 0
+    .description
+      float: left
+      width: 100%
+      @media screen and (min-width: $min_ad_single_width)
+        width: 75%
+    img
+      max-width: 100%
+      max-height: 100%
+    .carousel-indicators
+      li
+        border: 1px solid #DDDDDD
+      .active
+        background-color: #DDDDDD
+    .carousel-inner
+      background-color: #fff
+      border: 1px solid #ddd
+      border-radius: 4px

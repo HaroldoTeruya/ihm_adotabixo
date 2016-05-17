@@ -1,0 +1,20 @@
+$(document).ready(function()
+{
+  $('#f2').click(function()
+  {
+    $('#login').slideUp();
+    $('#signup').slideDown();
+    $(this).addClass('clicked');
+    $("#f1").removeClass('clicked');
+    $(this).preventDefault();
+  });
+  $('#f1').click(function()
+  {
+    $('#signup').slideUp();
+    $('#login').slideDown();
+    $(this).addClass('clicked');
+    $("#f2").removeClass('clicked');
+    $(this).preventDefault();
+  });
+
+});

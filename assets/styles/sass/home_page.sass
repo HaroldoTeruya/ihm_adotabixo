@@ -1,0 +1,30 @@
+@import base
+@import button
+@import navbar
+@import account
+@import sidebar
+@import image_preview
+@import ad
+@import ad_filters
+@import profile
+
+$min_width: 840px
+$default_margin: 20px
+$ad_div_margin_left: 350px
+$default_max_image_size: 250px
+
+.main_content
+  overflow: auto
+  position: relative
+  .configuration_div
+    @extend .filters
+  .ad_div
+    padding: $default_margin
+    @media screen and (min-width: $min_width)
+      margin-left: $ad_div_margin_left
+    .search_div
+      margin: $default_margin
+      @media (min-width: $min_width)
+        width: 80%
+    .ad_collection_div
+      @extend .ad-collection

@@ -1,0 +1,56 @@
+@import base
+@import navbar
+@import ad
+@import ad_filters
+@import button
+
+.profile
+  display: table
+  height: 100vh
+  width: 100%
+  vertical-align: middle
+  @extend .primary-background
+  @extend .text_white
+  @extend .text-outline
+  .row
+    width: 95%
+    margin: auto
+    margin-top: 15%
+    background-color: rgba(245, 245, 245, 0.4)
+    padding: 30px
+    border-radius: 5px
+
+.profile-ad
+  overflow: auto
+  position: relative
+  .profile-filters
+    @extend .filters
+  .profile-ads
+    padding: $default_margin
+    @media screen and (min-width: $min_width)
+      margin-left: $ad_div_margin_left
+    .search_div
+      margin: $default_margin
+      @media (min-width: $min_width)
+        width: 80%
+    @extend .ad-collection
+
+.profile-block
+  padding: 1em
+  text-align: center
+
+.profile-img
+  border: 1px solid #ddd
+  width: 100px
+  border-radius: 50% 50%
+
+.profile-bio, .profile-more
+  font-size: 14px
+
+.profile-more
+  position: absolute
+  bottom: 0
+  right: 0
+  margin: 0 0 0 0
+  border-radius: 3px 0 5px 0
+  color: #ffffff
