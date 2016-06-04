@@ -183,8 +183,8 @@ function populateVeterans(items)
     '</div>' +
     '<input type="text" class="form-control"  value="' + items[i].name + '"readonly>' +
     '<div class="input-group-btn">' +
-    '<button class="btn btn-primary" type="button">Afiliar-se</button>' +
-    '<button class="btn btn-danger cancel" type="button">Cancelar</button>' +
+    '<button data-toggle="modal" data-target="#confirm-relationship-modal" class="btn btn-primary afiliate" type="button">Afiliar-se</button>' +
+    '<button data-toggle="modal" data-target="#confirm-relationship-modal" class="btn btn-danger cancel" type="button">Cancelar</button>' +
     '</div>' +
     '</div>' +
     '</form>';
@@ -214,8 +214,8 @@ function populateFreshmans(items)
     '</div>' +
     '<input type="text" class="form-control"  value="' + items[i].name + '"readonly>' +
     '<div class="input-group-btn">' +
-    '<button class="btn btn-primary afiliate" type="button">Afiliar-se</button>' +
-    '<button class="btn btn-danger cancel" type="button">Cancelar</button>' +
+    '<button data-toggle="modal" data-target="#confirm-relationship-modal" class="btn btn-primary afiliate" type="button">Afiliar-se</button>' +
+    '<button data-toggle="modal" data-target="#confirm-relationship-modal" class="btn btn-danger cancel" type="button">Cancelar</button>' +
     '</div>' +
     '</div>' +
     '</form>';
@@ -266,12 +266,12 @@ function populateRepublics()
     '</div>'+
     '</div>'+
     '</div>'+
-    '<div id="collapse'+i+'" class="panel-collapse collapse">'+
-    '<div class="panel-body">'+
-    '<p><b>Integrante:</b> Jovem 2 <b>FCT</b></p>'+
-    '<p><b>Integrante:</b> Jovem 2 <b>FCT</b></p>'+
-    '<p><b>Integrante:</b> Jovem 2 <b>FCT</b></p>'+
-    '<p><b>Integrante:</b> Jovem 2 <b>FCT</b></p>'+
+    '<div id="collapse'+i+'" class="panel-collapse collapse in">'+
+    '<div class="panel-body content">'+
+    '<p><b>Representante:</b> Jovem 2 <b>FCT</b> - veterano</p>'+
+    '<p><b>Integrante:</b> Jovem 2 <b>FCT</b> - bixo</p>'+
+    '<p><b>Integrante:</b> Jovem 2 <b>FCT</b> - veterano</p>'+
+    '<p><b>Integrante:</b> Jovem 2 <b>FCT</b> - bixo</p>'+
     '</div>'+
     '</div>'+
     '</div>'+

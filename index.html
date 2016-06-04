@@ -71,20 +71,11 @@
         <span class="hamb-bottom"></span>
       </button>
 
-      <!-- PLACE -->
       <div class="">
+
         <!-- SEARCH BOX -->
         <div class="col-lg-12">
           <div class="input-group form-group">
-            <div class="input-group-btn" style="top: 1px">
-              <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Todos <span class="caret"></span></button>
-              <ul class="dropdown-menu">
-                <li><a href="#">Todos</a></li>
-                <li><a href="#">Repúblicas</a></li>
-                <li><a href="#">Veteranos</a></li>
-                <li><a href="#">Bixos</a></li>
-              </ul>
-            </div>
             <input id="ipt_search" type="text" class="form-control" placeholder="Procurar por nome de Bixo/Veterano/República" style="top: 1px">
             <span class="input-group-btn">
               <button id="search_all" class="btn btn-default glyphicon glyphicon-search" type="button"></button>
@@ -97,23 +88,36 @@
           <div class="panel with-nav-tabs panel-default">
             <div class="panel-heading">
               <ul class="nav nav-tabs nav-justified">
-                <li><a href="#tab1default" data-toggle="tab">Bixos</a></li>
-                <li><a href="#tab2default" data-toggle="tab">Veteranos</a></li>
-                <li class="active"><a href="#tab3default" data-toggle="tab">Repúblicas</a></li>
+                <li>
+                  <a href="#tab1default" data-toggle="tab">Bixos <span id="freshman-search-result" class="badge">2</span></a>
+                </li>
+                <li>
+                  <a href="#tab2default" data-toggle="tab">Veteranos  <span id="veteran-search-result" class="badge">2</span></a>
+                </li>
+                <li class="active"><a href="#tab3default" data-toggle="tab">Repúblicas  <span id="republic-search-result" class="badge">2</span></a>
+                </li>
               </ul>
             </div>
             <div class="panel-body">
               <div class="tab-content">
                 <div class="tab-pane fade in" id="tab1default">
                   <div class="col-lg-12">
+
+                    <!-- BIXOS LIST -->
                     <div class="" id="freshman_list">
+
                     </div>
+
                   </div>
                 </div>
                 <div class="tab-pane fade" id="tab2default">
                   <div class="col-lg-12">
+
+                    <!-- VETERAN LIST -->
                     <div class="" id="veteran_list">
+
                     </div>
+
                   </div>
                 </div>
                 <div class="tab-pane fade in active" id="tab3default">
@@ -145,6 +149,22 @@
     </div>
   </div>
 
+  <!-- CONFIRM MODEL -->
+  <div class="modal fade" id="confirm-relationship-modal" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header"><h3>Confirmar...</h3></div>
+        <div class="modal-body">
+            Você realmente deseja blá blá blá?
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+          <button type="button" class="btn btn-success btn-ok" data-dismiss="modal">Confirmar</button>
+        </div>
+      </div>
+    </div>
+  </div><!-- END CONFIRM MODEL -->
+
   <!-- <script type="text/javascript" src="jquery-1.12.3.min.js"></script> -->
   <!-- <script src="http://netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script> -->
   <script src="http://maps.google.com/maps/api/js?sensor=false" type="text/javascript"></script>
@@ -153,8 +173,8 @@
   <script type="text/javascript" src="waypoint/lib/noframework.waypoints.min.js"></script>
   <script type="text/javascript" src="assets/scripts/sidebar.js"></script>
 
-  <script type="text/javascript" src="assets/scripts/jquery.toaster.js"></script>
-  <script type="text/javascript" src="assets/scripts/toaster.js"></script>
+  <!-- <script type="text/javascript" src="assets/scripts/jquery.toaster.js"></script> -->
+  <!-- <script type="text/javascript" src="assets/scripts/toaster.js"></script> -->
 
 </body>
 </html>

@@ -105,7 +105,7 @@ html {
     height: 4px;
     width: 100%; }
   .hamburger.is-closed .hamb-top, .hamburger.is-closed .hamb-middle, .hamburger.is-closed .hamb-bottom {
-    background-color: #1a1a1a; }
+    background-color: #777; }
   .hamburger.is-closed .hamb-top {
     top: 5px;
     -webkit-transition: all 0.35s ease-in-out; }
@@ -122,7 +122,7 @@ html {
     bottom: 0;
     -webkit-transition: all 0.35s ease-in-out; }
   .hamburger.is-open .hamb-top, .hamburger.is-open .hamb-middle, .hamburger.is-open .hamb-bottom {
-    background-color: #1a1a1a; }
+    background-color: #777; }
   .hamburger.is-open .hamb-top, .hamburger.is-open .hamb-bottom {
     top: 50%;
     margin-top: -2px; }
@@ -154,10 +154,12 @@ html {
 #tab3default .list-group .panel-group {
   margin-top: 20px; }
   #tab3default .list-group .panel-group .panel-body {
-    padding-bottom: 0; }
+    padding-bottom: 0;
+    color: #777; }
   #tab3default .list-group .panel-group .panel-title {
     overflow: auto; }
     #tab3default .list-group .panel-group .panel-title .title {
+      color: #777;
       float: left; }
     #tab3default .list-group .panel-group .panel-title .detail {
       float: right; }
@@ -166,5 +168,8 @@ html {
   display: block;
   width: 100%;
   height: 400px; }
+
+.panel-default > .panel-heading .badge {
+  background-color: #777; }
 
 /*# sourceMappingURL=index.css.map */
