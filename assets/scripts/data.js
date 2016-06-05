@@ -490,11 +490,25 @@ var rep_list = [
 
 
 var locations = [
-  ["rua1", -22.133689, -51.410490, 1],
+  ["rua1 <a href='https://www.google.com'>opa</a>", -22.133689, -51.410490, 1],
   ["rua2", -22.132188, -51.405523, 2],
   ["rua3", -22.121093, -51.412311, 3],
   ["rua4",-22.123717, -51.413888, 4]
 ];
+
+var infowindow = new google.maps.InfoWindow({
+    content: "contentString"
+});
+uluru = [-22.133689, -51.410490]
+
+var marker = new google.maps.Marker({
+    position: uluru,
+    map: map,
+    title: 'Uluru (Ayers Rock)'
+});
+marker.addListener('click', function() {
+    infowindow.open(map, marker);
+  });
 var marker_list = [];
 var map = new google.maps.Map(document.getElementById('map'), {
   zoom: 14,
@@ -627,6 +641,8 @@ function search_freshman(str_search){
 
 function search_rep(str_search){
   var result_list = []
+  map.panTo(marker_list[0].getPosition());
+  infowindow.open(map, marker);
   var items = rep_list;
   for(var i = 0; i < items.length; i++)
   {
