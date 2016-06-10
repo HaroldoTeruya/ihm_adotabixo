@@ -254,7 +254,7 @@ function populateRepublics()
   for(var i = 0; i < 5; i++)
   {
     var element =
-    '<div class="panel-group" id="'+i+'">'+
+    '<div class="panel-group" id="rep_panel_'+i+'">'+
     '<div class="panel panel-default">'+
     '<div class="panel-heading">'+
     '<div class="panel-title">'+
@@ -488,52 +488,73 @@ var rep_list = [
   }
 ]
 
-
+/*
 var locations = [
   ["rua1 <a href='https://www.google.com'>opa</a>", -22.133689, -51.410490, 1],
   ["rua2", -22.132188, -51.405523, 2],
   ["rua3", -22.121093, -51.412311, 3],
   ["rua4",-22.123717, -51.413888, 4]
 ];
+*/
 
-var infowindow = new google.maps.InfoWindow({
-    content: "contentString"
-});
-uluru = [-22.133689, -51.410490]
+var locations = [
+	{lat: -22.133689, lng: -51.410490},
+	{lat: -22.132188, lng: -51.405523},
+	{lat: -22.121093, lng: -51.412311},
+	{lat: -22.123717, lng: -51.413888}
+]
 
-var marker = new google.maps.Marker({
-    position: uluru,
-    map: map,
-    title: 'Uluru (Ayers Rock)'
-});
-marker.addListener('click', function() {
-    infowindow.open(map, marker);
-  });
 var marker_list = [];
+var street1 = new google.maps.InfoWindow({
+    	content: "Rua 1 <a href='https://google.com'> link</a>"});
+var street2 = new google.maps.InfoWindow({
+    	content: "Rua 2 <a href='https://google.com'> link</a>"});
+var street3 = new google.maps.InfoWindow({
+    	content: "Rua 3 <a href='https://google.com'> link</a>"});
+var street4 = new google.maps.InfoWindow({
+    	content: "Rua 4 <a href='https://google.com'> link</a>"});
+
+var info_list = [street1, street2, street3, street4];
+
 var map = new google.maps.Map(document.getElementById('map'), {
   zoom: 14,
   center: new google.maps.LatLng(-22.125519, -51.404074),
   mapTypeId: google.maps.MapTypeId.ROADMAP
 });
 
-var infowindow = new google.maps.InfoWindow();
+var close_all_info = (function() {
+	var i;
+	for(i=0; i< info_list.length; i++){
+		info_list[i].close();
+	}
+});
+var add_markers = (function() {
 
-var marker, i;
+	var marker, i;
 
-for (i = 0; i < locations.length; i++){
-  marker = new google.maps.Marker({
-    position: new google.maps.LatLng(locations[i][1], locations[i][2]),
-    map: map
-  });
-  marker_list.push(marker);
+	for (i = 0; i < locations.length; i++){
+		marker = new google.maps.Marker({
+			position: locations[i],
+			map: map,
+		});
+		marker['infowindow'] = info_list[i];
+		marker_list.push(marker);
+		marker.addListener('click', function() {
+			close_all_info();
+			this['infowindow'].open(map, this);
+		});
+		/*
+		google.maps.event.addListener(marker, 'click', (function(marker, i) {
+			return function() {
+			infowindow.setContent(locations[i][0]);
+			infowindow.open(map, marker);
+			}
+		})(marker, i));
+		*/
+	}
+});
 
-  google.maps.event.addListener(marker, 'click', (function(marker, i) {
-    return function() {
-      infowindow.setContent(locations[i][0]);
-      infowindow.open(map, marker);
-    }
-  })(marker, i));
-}
+add_markers();
 
 function hide_all()
 {
@@ -641,8 +662,8 @@ function search_freshman(str_search){
 
 function search_rep(str_search){
   var result_list = []
-  map.panTo(marker_list[0].getPosition());
-  infowindow.open(map, marker);
+//  map.panTo(marker_list[0].getPosition());
+//  infowindow.open(map, marker);
   var items = rep_list;
   for(var i = 0; i < items.length; i++)
   {
