@@ -802,16 +802,23 @@ var load_rep_list = (function() {
 			content: "<p><b>" + rep_list[i].name + "</b></p>" +
 				"<p>" + rep_list[i].address.street + "</p>" +
 				"<p>" +  rep_list[i].address.city_state + "</p>" +
-				"<p><a id= '" + i + "' href='#rep" + i + "'>" +
+				"<p><a id='link_rep" + i + "' href='#rep" + i + "'"+
+				" element_id='"+ i +"'>" +
 				"Mais Informações</a></p>"});
 		var marker = new google.maps.Marker({
 			position: rep_list[i].address.location,
 			map: map,
 		});
 		marker['info_window'] = info_window;
+		marker['id'] = i;
 		marker.addListener('click', function() {
 			close_all_info();
 			this['info_window'].open(map, this);
+			document.getElementById("link_rep"+this['id']).addEventListener("click", function(){
+				var id = this.getAttribute("element_id");
+				document.getElementById("collapse"+id).setAttribute("class",
+										"in");
+			});
 		});
 		info_list.push(info_window);
 		marker_list.push(marker);
