@@ -1,3 +1,5 @@
+
+//##################VARS####################
 var freshman_list = [
   {/*will be treated like outsider of Sao Paulo*/
     name: "Maria",
@@ -7,7 +9,7 @@ var freshman_list = [
       "instagram.com/maria"
     ],
     campus: "FCT",
-    course: "CC"
+    course: "Ciência da Computação"
   },
   {/*will be treated like outsider of prudente*/
     name: "Jorge",
@@ -17,7 +19,7 @@ var freshman_list = [
       "instagram.com/jorge"
     ],
     campus: "FCT",
-    course: "CC"
+    course: "Ciência da Computação"
   },
   {/* will be treated like outsider of campus*/
     name: "José",
@@ -27,7 +29,7 @@ var freshman_list = [
       "instagram.com/jose"
     ],
     campus: "FIPP",
-    course: "CC"
+    course: "Ciência da Computação"
   },
   {
     name: "Camila",
@@ -37,7 +39,7 @@ var freshman_list = [
       "instagram.com/camila"
     ],
     campus: "FCT",
-    course: "CC"
+    course: "Ciência da Computação"
   }
 ]
 
@@ -50,7 +52,7 @@ var veteran_list = [
       "instagram.com/gustavo"
     ],
     campus: "FCT",
-    course: "GEO"
+    course: "Geografia"
   },
   {
     name: "Gabriel",
@@ -60,7 +62,7 @@ var veteran_list = [
       "instagram.com/gabriel"
     ],
     campus: "FCT",
-    course: "CC"
+    course: "Ciência da Computação"
   },
   {
     name: "Giovana",
@@ -70,7 +72,7 @@ var veteran_list = [
       "instagram.com/giovana"
     ],
     campus: "FCT",
-    course: "CC"
+    course: "Ciência da Computação"
   },
   {
     name: "Renata",
@@ -80,10 +82,105 @@ var veteran_list = [
       "instagram.com/renata"
     ],
     campus: "FCT",
-    course: "CC"
+    course: "Ciência da Computação"
   }
 ]
 
+
+//################# REP LIST
+var rep_list = [
+  {
+    name: "Rep0_fera",
+    id: 0,
+    vacancy: 0,
+    gender: "f",
+	phone: "(18) 987678980",
+    owner:veteran_list[2],
+    members: [
+      freshman_list[0],
+      freshman_list[3]
+    ],
+    address: {
+        street: "R. Osvaldo Nobre Bandeira, 79 - Jardim Aquinopolis",
+        city_state: "Pres. Prudente - SP",
+        location: {
+            lat: -22.133689,
+            lng: -51.410490
+        }
+    }
+  },
+  {
+    name: "Rep1_cacau",
+    id: 1,
+    vacancy: 2,
+    gender: "f",
+	phone: "(18) 987632980",
+    owner: veteran_list[3],
+    members: [],
+    address: {
+        street: "R. Caetés, 1 - Jardim Caiçara",
+        city_state: "Pres. Prudente - SP",
+        location: {
+            lat: -22.132188,
+            lng: -51.405523
+        }
+    }
+  },
+  {
+    name: "Rep2_bexiga",
+    id: 2,
+    vacancy: 1,
+    gender: "m",
+	phone: "(18) 981238980",
+    owner: veteran_list[0],
+    members: [
+      freshman_list[1],
+    ],
+    address: {
+        street: "R. Abdala Buchala, 116 - Jardim", 
+        city_state: "Pres. Prudente - SP",
+        location: {
+            lat: -22.121093,
+            lng: -51.412311
+        }
+    }
+  },
+  {
+    name: "Rep3_barriga",
+    id: 3,
+    vacancy: 4,
+    gender: "m",
+	phone: "(18) 987600170",
+    owner: veteran_list[1],
+    members: [
+        freshman_list[2]
+    ],
+    address: {
+        street: "R. Artur Whitaker, 174 - Jardim Campo Belo", 
+        city_state: "Pres. Prudente - SP",
+        location: {
+            lat: -22.123717,
+            lng: -51.413888
+        }
+    }
+  }
+]
+
+//# marker list for google map
+var marker_list = [];
+
+// # info window list
+var info_list = [];
+
+// # map var
+var map = new google.maps.Map(document.getElementById('map'), {
+  zoom: 14,
+  center: new google.maps.LatLng(-22.125519, -51.404074),
+  mapTypeId: google.maps.MapTypeId.ROADMAP
+});
+
+
+//#####################FUNCTIONS####################
 function veteran_from_state()
 {
   return veteran_list;
@@ -254,7 +351,89 @@ function populateFilters(list,selectId)
     option.text = list[i].name;
     selectList.appendChild(option);
   }
-}
+};
+
+
+var assemb_string_member = (function(member){
+	var assemb_string = 
+		'		<div class="well well-sm profile">'+
+		'			<div class="pull-left">'+
+		'			<img class="img-circle" src="assets/images/user.png" alt="" />'+
+		'			</div>'+
+		'			<div class="pull-left content">'+
+		'			<div><span class="title">'+ member.name +' - '+ member.campus +' - </span><span><a href="#">Ver Perfil</a></span></div>'+
+		'			<div>'+ member.course +'</div>'+
+		'			</div>'+
+		'		</div>';
+	return assemb_string;
+});
+
+ 
+var append_rep_html = (function(rep){
+	
+	var list = document.getElementById("republic_list");
+	var elements = 
+	'<div id="rep' + rep.id + '" class="panel-group republic">'+
+	'<div  class="panel panel-info" style="position:relative" >'+
+	'<div class="panel-heading">'+
+	'<div class="panel-title">'+
+	'<div class="">'+
+	'			<div class="title">'+
+	'				<span>'+
+	'					<img class="logo" src="assets/images/home-page.png" alt="" />' +
+	'				</span>'+
+	'				<strong> '+ rep.name +'</strong>'+
+	'				<span> - </span>'+
+	'			</div>'+
+	'			<span>'+
+	'				<a id="rep_on_map'+ rep.id +'" href="#map_anchor">Ver no mapa</a>'+
+	'			</span>'+
+	'			<a class="detail" data-toggle="collapse" href="#collapse'+ rep.id +'">Mais detalhes</a>'+
+	'		</div>'+
+	'	</div>'+
+	'	</div>'+
+	'	<div id="collapse'+ rep.id +'" class="panel-collapse collapse ">'+
+	'	<div class="panel-body">'+
+	'		<div class="content">'+
+	'		<div class="info"><b>Endereço: </b>'+ rep.address.street +
+	'		<p>'+ rep.address.city_state +'</p></div>'+
+	'		<div class="info"><b>Número de contato: </b>'+ rep.phone + '</div>'+
+	'		<div class="info"><b>Número de vagas: </b>'+ rep.vacancy +'</div>'+
+	'		</div>'+
+	'		<div class="members">'+
+	'		<label for="">Representante:</label>'+
+	assemb_string_member(rep.owner)+
+	'</div>';
+	if (rep.members.length>0){
+		elements = elements +
+		'		<div class="members">'+
+		'		<label for="">Membros:</label>';
+		var member_string = '';
+		for (var i=0; i<rep.members.length; i++){
+			var member = rep.members[i];
+			member_string = member_string + assemb_string_member(member);		
+		}
+		elements = elements + member_string;
+	}	
+	elements = elements+
+	'</div>'+
+	'</div>'+
+	'</div>'+
+	'</div>'+
+	'</div>';
+	list.innerHTML = list.innerHTML + elements;
+
+});
+
+
+// Function to load the html for reps
+var load_rep_html = (function(){
+	for(var i=0; i<rep_list.length; i++){
+		append_rep_html(rep_list[i]);
+	}
+});
+
+
 function populateRepublics()
 {
   var list = document.getElementById("republic_list");
@@ -318,7 +497,7 @@ function getDataState(title)
     populateFilters([{name:"Todos"},{name:"Presidente Prudente"},{name:"Rio de Janeiro"},{name:"São José do Rio Preto"}],"cidade");
     populateFilters([{name:"Todos"},{name:"UFRJ"},{name:"UNESP"},{name:"UNOESTE"}],"universidade");
     populateFilters([{name:"Todos"},{name:"FCT"},{name:"FIPP"}],"campus");
-    populateFilters([{name:"Todos"},{name:"CC"},{name:"GEO"}],"curso");
+    populateFilters([{name:"Todos"},{name:"Ciência da Computação"},{name:"Geografia"}],"curso");
 
     // populateVeterans(veteran_from_state());
     populateFreshmans(freshman_list);
@@ -330,7 +509,7 @@ function getDataState(title)
     populateFilters([{name:"Todos"},{name:"São José do Rio Preto"},{name:"Presidente Prudente"}],"cidade");
     populateFilters([{name:"Todos"},{name:"UNESP"},{name:"UNOESTE"}],"universidade");
     populateFilters([{name:"Todos"},{name:"FCT"},{name:"FIPP"}],"campus");
-    populateFilters([{name:"Todos"},{name:"CC"},{name:"GEO"}],"curso");
+    populateFilters([{name:"Todos"},{name:"Ciência da Computação"},{name:"Geografia"}],"curso");
 
     populateFreshmans(freshman_list);
     populateVeterans(veteran_list);
@@ -354,7 +533,7 @@ function getDataCity(title)
   {
     populateFilters([{name:"Todos"},{name:"UFRJ"},{name:"UNESP"},{name:"UNOESTE"}],"universidade");
     populateFilters([{name:"Todos"},{name:"FCT"},{name:"FIPP"}],"campus");
-    populateFilters([{name:"Todos"},{name:"CC"},{name:"GEO"}],"curso");
+    populateFilters([{name:"Todos"},{name:"Ciência da Computação"},{name:"Geografia"}],"curso");
 
     populateFreshmans(freshman_list);
     populateVeterans(veteran_list);
@@ -364,7 +543,7 @@ function getDataCity(title)
   {
     populateFilters([{name:"Todos"},{name:"UNESP"},{name:"UNOESTE"}],"universidade");
     populateFilters([{name:"Todos"},{name:"FCT"},{name:"FIPP"}],"campus");
-    populateFilters([{name:"Todos"},{name:"CC"},{name:"GEO"}],"curso");
+    populateFilters([{name:"Todos"},{name:"Ciência da Computação"},{name:"Geografia"}],"curso");
 
     populateFreshmans(freshman_list);
     populateVeterans(veteran_list);
@@ -396,7 +575,7 @@ function getDataUnivesity(title)
   if( title == "Todos" )
   {
     populateFilters([{name:"Todos"},{name:"FCT"},{name:"FIPP"}],"campus");
-    populateFilters([{name:"Todos"},{name:"CC"},{name:"GEO"}],"curso");
+    populateFilters([{name:"Todos"},{name:"Ciência da Computação"},{name:"Geografia"}],"curso");
 
     var element = document.getElementById("cidade");
     var elementValue = element.options[element.selectedIndex].value;
@@ -417,7 +596,7 @@ function getDataUnivesity(title)
   else if( title == "UNESP" )
   {
     populateFilters([{name:"Todos"},{name:"FCT"}],"campus");
-    populateFilters([{name:"Todos"},{name:"CC"},{name:"GEO"}],"curso");
+    populateFilters([{name:"Todos"},{name:"Ciência da Computação"},{name:"Geografia"}],"curso");
 
     populateFreshmans(freshman_fct());
     populateVeterans(veteran_list);
@@ -427,7 +606,7 @@ function getDataUnivesity(title)
   else if( title == "UNOESTE" )
   {
     populateFilters([{name:"Todos"},{name:"FIPP"}],"campus");
-    populateFilters([{name:"Todos"},{name:"CC"}],"curso");
+    populateFilters([{name:"Todos"},{name:"Ciência da Computação"}],"curso");
 
     populateFreshmans(freshman_fipp());
     cleanVeterans();
@@ -454,17 +633,17 @@ function getDataCampus(title)
     switch( elementValue )
     {
       case "UNESP":
-        populateFilters([{name:"Todos"},{name:"CC"},{name:"GEO"}],"curso");
+        populateFilters([{name:"Todos"},{name:"Ciência da Computação"},{name:"Geografia"}],"curso");
         populateFreshmans(freshman_fct());
         populateVeterans(veteran_list);
       return;
       case "UNOESTE":
-        populateFilters([{name:"Todos"},{name:"CC"}],"curso");
+        populateFilters([{name:"Todos"},{name:"Ciência da Computação"}],"curso");
         populateFreshmans(freshman_fipp());
         cleanVeterans();
       return;
       case "TODOS":
-        populateFilters([{name:"Todos"},{name:"CC"},{name:"GEO"}],"curso");
+        populateFilters([{name:"Todos"},{name:"Ciência da Computação"},{name:"Geografia"}],"curso");
         populateFreshmans(freshman_list);
         populateVeterans(veteran_list);
       return;
@@ -476,7 +655,7 @@ function getDataCampus(title)
   // FCT SELECTED
   else if( title == "FCT" )
   {
-    populateFilters([{name:"Todos"},{name:"CC"},{name:"GEO"}],"curso");
+    populateFilters([{name:"Todos"},{name:"Ciência da Computação"},{name:"Geografia"}],"curso");
 
     populateFreshmans(freshman_fct());
     populateVeterans(veteran_list);
@@ -485,7 +664,7 @@ function getDataCampus(title)
   // FIPP SELECTED
   else if( title == "FIPP" )
   {
-    populateFilters([{name:"Todos"},{name:"CC"}],"curso");
+    populateFilters([{name:"Todos"},{name:"Ciência da Computação"}],"curso");
 
     populateFreshmans(freshman_fipp());
     cleanVeterans();
@@ -518,12 +697,12 @@ function getDataCourse(title)
             {
               case "Todos":
               {
-                if( title == "GEO" )
+                if( title == "Geografia" )
                 {
                   cleanFreshmans();
                   populateVeterans(veteran_geo());
                 }
-                else if( title == "CC" )
+                else if( title == "Ciência da Computação" )
                 {
                   populateFreshmans(freshman_list);
                   populateVeterans(veteran_cc());
@@ -537,12 +716,12 @@ function getDataCourse(title)
               return;
               case "FCT":
               {
-                if( title == "GEO" )
+                if( title == "Geografia" )
                 {
                   cleanFreshmans();
                   populateVeterans(veteran_geo());
                 }
-                else if( title == "CC" )
+                else if( title == "Ciência da Computação" )
                 {
                   populateFreshmans(freshman_fct());
                   populateVeterans(veteran_cc());
@@ -556,12 +735,12 @@ function getDataCourse(title)
               return;
               case "FIPP":
               {
-                if( title == "GEO" )
+                if( title == "Geografia" )
                 {
                   cleanFreshmans();
                   cleanVeterans();
                 }
-                else if( title == "CC" )
+                else if( title == "Ciência da Computação" )
                 {
                   populateFreshmans(freshman_fipp());
                   cleanVeterans();
@@ -576,12 +755,12 @@ function getDataCourse(title)
             }
             return;
           case "UNESP":
-            if( title == "GEO" )
+            if( title == "Geografia" )
             {
               cleanFreshmans();
               populateVeterans(veteran_geo());
             }
-            else if( title == "CC" )
+            else if( title == "Ciência da Computação" )
             {
               populateFreshmans(freshman_fct());
               populateVeterans(veteran_cc());
@@ -593,12 +772,12 @@ function getDataCourse(title)
             }
             return;
           case "UNOESTE":
-            if( title == "GEO" )
+            if( title == "Geografia" )
             {
               cleanFreshmans();
               cleanVeterans();
             }
-            else if( title == "CC" )
+            else if( title == "Ciência da Computação" )
             {
               populateFreshmans(freshman_fipp());
               cleanVeterans();
@@ -615,148 +794,30 @@ function getDataCourse(title)
   }
 }
 
-var rep_list = [
-  {
-    name: "Rep1",
-    id: 1,
-    vacancy: 0,
-    gender: "f",
-    owner:freshman_list[1],
-    members: [
-      "Camila",
-      "Eliana",
-    ],
-    address: {
-        street: "R. Osvaldo Nobre Bandeira, 79 - Jardim Aquinopolis",
-        city_state: "Pres. Prudente - SP",
-        location: {
-            lat: -22.133689,
-            lng: -51.410490
-        }
-    }
-  },
-  {
-    name: "Rep2",
-    id: 2,
-    vacancy: 2,
-    gender: "f",
-    owner:{
-      name: "Giovana",
-      email: "giovana@mail.com",
-      social_network: [
-        "facebook.com/giovana",
-        "instagram.com/giovana"
-      ],
-      campus: "FCT",
-      course: "CC"
-    },
-    members: [
-      "Camila",
-      "Eliana",
-    ],
-    address: {
-        street: "R. Caetés, 1 - Jardim Caiçara",
-        city_state: "Pres. Prudente - SP",
-        location: {
-            lat: -22.132188,
-            lng: -51.405523
-        }
-    }
-  },
-  {
-    name: "Rep3",
-    id: 3,
-    vacancy: 1,
-    gender: "m",
-    owner:{
-      name: "Gabriel",
-      email: "gabriel@mail.com",
-      social_network: [
-        "facebook.com/gabriel",
-        "instagram.com/gabriel"
-      ],
-      campus: "FCT",
-      course: "CC"
-    },
-    members: [
-      "Jorge",
-      "Emilio",
-    ],
-    address: {
-        street: "R. Abdala Buchala, 116 - Jardim", 
-        city_state: "Pres. Prudente - SP",
-        location: {
-            lat: -22.121093,
-            lng: -51.412311
-        }
-    }
-  },
-  {
-    name: "Rep4",
-    id: 3,
-    vacancy: 4,
-    gender: "m",
-    owner:{
-      name: "Jose",
-      email: "jose@mail.com",
-      social_network: [
-        "facebook.com/gabriel",
-        "instagram.com/gabriel"
-      ],
-      campus: "FCT",
-      course: "CC"
-    },
-    members: [
-      "Jorge",
-      "Emilio",
-    ],
-    address: {
-        street: "R. Artur Whitaker, 174 - Jardim Campo Belo", 
-        city_state: "Pres. Prudente - SP",
-        location: {
-            lat: -22.123717,
-            lng: -51.413888
-        }
-    }
-  }
-]
 
-console.log(rep_list);
 // Function to load the streets and info windows
 var load_rep_list = (function() {
 	for(var i=0; i< rep_list.length; i++){
+		var info_window = new google.maps.InfoWindow({
+			content: "<p><b>" + rep_list[i].name + "</b></p>" +
+				"<p>" + rep_list[i].address.street + "</p>" +
+				"<p>" +  rep_list[i].address.city_state + "</p>" +
+				"<p><a id= '" + i + "' href='#rep" + i + "'>" +
+				"Mais Informações</a></p>"});
+		var marker = new google.maps.Marker({
+			position: rep_list[i].address.location,
+			map: map,
+		});
+		marker['info_window'] = info_window;
+		marker.addListener('click', function() {
+			close_all_info();
+			this['info_window'].open(map, this);
+		});
+		info_list.push(info_window);
+		marker_list.push(marker);
 	}
 });
 
-/*
-var locations = [
-	{lat: -22.133689, lng: -51.410490},
-	{lat: -22.132188, lng: -51.405523},
-	{lat: -22.121093, lng: -51.412311},
-	{lat: -22.123717, lng: -51.413888}
-]
-*/
-var marker_list = [];
-var street1 = new google.maps.InfoWindow({
-    	content: "<p><b>Rep1</b></p> <p>R. Osvaldo Nobre Bandeira, 79 \
-				- Jardim Aquinopolisi </p> <p> Pres. Prudente - SP</p> \
-				<p><a class='detail' data-toggle='collapse in' \
-				href='#rep1'>Mais detalhes</a></p> \
-				<p><a href='#rep1'>Mais Informações</a></p>"});
-var street2 = new google.maps.InfoWindow({
-    	content: "Rua 2 <a href='https://google.com'> link</a>"});
-var street3 = new google.maps.InfoWindow({
-    	content: "Rua 3 <a href='https://google.com'> link</a>"});
-var street4 = new google.maps.InfoWindow({
-    	content: "Rua 4 <a href='https://google.com'> link</a>"});
-
-var info_list = [street1, street2, street3, street4];
-
-var map = new google.maps.Map(document.getElementById('map'), {
-  zoom: 14,
-  center: new google.maps.LatLng(-22.125519, -51.404074),
-  mapTypeId: google.maps.MapTypeId.ROADMAP
-});
 
 var close_all_info = (function() {
 	var i;
@@ -764,25 +825,7 @@ var close_all_info = (function() {
 		info_list[i].close();
 	}
 });
-var add_markers = (function() {
 
-	var marker, i;
-
-	for (i = 0; i < locations.length; i++){
-		marker = new google.maps.Marker({
-			position: locations[i],
-			map: map,
-		});
-		marker['infowindow'] = info_list[i];
-		marker_list.push(marker);
-		marker.addListener('click', function() {
-			close_all_info();
-			this['infowindow'].open(map, this);
-		});
-	}
-});
-
-add_markers();
 
 function hide_all()
 {
@@ -790,12 +833,16 @@ function hide_all()
     marker_list[i].setMap(null);
   }
 }
+
+
 function show_all()
 {
   for (var i = 0; i < marker_list.length; i++) {
     marker_list[i].setMap(map);
   }
 }
+
+
 function show_female(){
   //show_all();
   marker_list[0].setMap(map);
@@ -937,3 +984,8 @@ function general_search(str_search){
 $("#ipt_search").keyup(function() {
   general_search(this.value);
 });
+
+
+load_rep_list();
+load_rep_html();
+
