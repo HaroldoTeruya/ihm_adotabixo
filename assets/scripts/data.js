@@ -354,6 +354,22 @@ function populateFilters(list,selectId)
 };
 
 
+var close_all_info = (function() {
+	var i;
+	for(i=0; i< info_list.length; i++){
+		info_list[i].close();
+	}
+});
+
+
+var click_map_on_rep = (function(id){
+	close_all_info();
+	var marker = marker_list[id];
+	map.panTo(marker.getPosition());
+	marker['info_window'].open(map, marker);
+});	
+
+
 var assemb_string_member = (function(member){
 	var assemb_string = 
 		'		<div class="well well-sm profile">'+
@@ -386,7 +402,7 @@ var append_rep_html = (function(rep){
 	'				<span> - </span>'+
 	'			</div>'+
 	'			<span>'+
-	'				<a id="rep_on_map'+ rep.id +'" href="#map_anchor">Ver no mapa</a>'+
+	'				<a id="rep_on_map'+ rep.id +'" onclick="click_map_on_rep('+rep.id+')"  element_id="'+ rep.id +'" href="#map">Ver no mapa</a>'+
 	'			</span>'+
 	'			<a class="detail" data-toggle="collapse" href="#collapse'+ rep.id +'">Mais detalhes</a>'+
 	'		</div>'+
@@ -422,7 +438,6 @@ var append_rep_html = (function(rep){
 	'</div>'+
 	'</div>';
 	list.innerHTML = list.innerHTML + elements;
-
 });
 
 
@@ -794,7 +809,6 @@ function getDataCourse(title)
   }
 }
 
-
 // Function to load the streets and info windows
 var load_rep_list = (function() {
 	for(var i=0; i< rep_list.length; i++){
@@ -825,13 +839,6 @@ var load_rep_list = (function() {
 	}
 });
 
-
-var close_all_info = (function() {
-	var i;
-	for(i=0; i< info_list.length; i++){
-		info_list[i].close();
-	}
-});
 
 
 function hide_all()
@@ -962,8 +969,6 @@ function search_freshman(str_search){
 
 function search_rep(str_search){
   var result_list = []
-//  map.panTo(marker_list[0].getPosition());
-//  infowindow.open(map, marker);
   var items = rep_list;
   for(var i = 0; i < items.length; i++)
   {
