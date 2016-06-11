@@ -105,7 +105,7 @@ html {
     height: 4px;
     width: 100%; }
   .hamburger.is-closed .hamb-top, .hamburger.is-closed .hamb-middle, .hamburger.is-closed .hamb-bottom {
-    background-color: #1a1a1a; }
+    background-color: #777; }
   .hamburger.is-closed .hamb-top {
     top: 5px;
     -webkit-transition: all 0.35s ease-in-out; }
@@ -122,7 +122,7 @@ html {
     bottom: 0;
     -webkit-transition: all 0.35s ease-in-out; }
   .hamburger.is-open .hamb-top, .hamburger.is-open .hamb-middle, .hamburger.is-open .hamb-bottom {
-    background-color: #1a1a1a; }
+    background-color: #777; }
   .hamburger.is-open .hamb-top, .hamburger.is-open .hamb-bottom {
     top: 50%;
     margin-top: -2px; }
@@ -151,20 +151,89 @@ html {
     -webkit-transform: translate3d(-100px, 0, 0);
     -webkit-transition: all 0.35s ease-in-out; }
 
+#tab3default > div {
+  padding-left: 0;
+  padding-right: 0; }
+#tab3default .alert {
+  position: absolute;
+  padding: 2px;
+  border: 1px solid transparent;
+  top: -10px;
+  right: -10px;
+  font-size: x-small; }
+#tab3default .title {
+  color: #777;
+  float: left;
+  margin-right: 5px; }
+  #tab3default .title .logo {
+    height: 19px; }
+#tab3default .detail {
+  float: right; }
 #tab3default .list-group .panel-group {
   margin-top: 20px; }
   #tab3default .list-group .panel-group .panel-body {
-    padding-bottom: 0; }
+    padding-bottom: 0;
+    color: #777; }
+    #tab3default .list-group .panel-group .panel-body .content {
+      padding: 10px;
+      background-color: #f5f5f5;
+      margin-bottom: 15px; }
+      #tab3default .list-group .panel-group .panel-body .content .info {
+        border-bottom: 1px solid #f5f5f5; }
+    #tab3default .list-group .panel-group .panel-body .members .profile {
+      color: #777;
+      padding: 0 !important;
+      overflow: auto; }
+      #tab3default .list-group .panel-group .panel-body .members .profile img {
+        background-color: white;
+        padding: 10px;
+        margin: 7px; }
+      #tab3default .list-group .panel-group .panel-body .members .profile .content {
+        margin-bottom: 0; }
   #tab3default .list-group .panel-group .panel-title {
     overflow: auto; }
-    #tab3default .list-group .panel-group .panel-title .title {
-      float: left; }
-    #tab3default .list-group .panel-group .panel-title .detail {
-      float: right; }
 
 .map_canvas {
   display: block;
   width: 100%;
-  height: 400px; }
+  height: 400px;
+  margin-bottom: 15px; }
+
+.panel-default > .panel-heading .badge {
+  background-color: #777; }
+
+.profile {
+  color: #777; }
+  .profile img {
+    background-color: white;
+    padding: 10px;
+    margin-right: 7px; }
+  .profile .content .title {
+    font-weight: bold; }
+
+.spin {
+  -webkit-transform-origin: 50% 50%;
+  transform-origin: 50% 50%;
+  -ms-transform-origin: 50% 50%;
+  -webkit-animation: spin 2s infinite linear;
+  -moz-animation: spin 2s infinite linear;
+  -o-animation: spin 2s infinite linear;
+  animation: spin 2s infinite linear; }
+
+@-moz-keyframes spin {
+  from {
+    -moz-transform: rotate(0deg); }
+  to {
+    -moz-transform: rotate(360deg); } }
+@-webkit-keyframes spin {
+  from {
+    -webkit-transform: rotate(0deg); }
+  to {
+    -webkit-transform: rotate(360deg); } }
+@keyframes spin {
+  from {
+    transform: rotate(0deg); }
+  to {
+    transform: rotate(360deg); } }
 
 /*# sourceMappingURL=index.css.map */
