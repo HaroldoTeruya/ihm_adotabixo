@@ -354,6 +354,26 @@ function populateFilters(list,selectId)
 };
 
 
+// hide pi
+var hide_all_pi = (function(){
+	var element_list = document.getElementsByClassName("pi");
+	for (var i = 0; i<element_list.length; i++){
+		element_list[i].classList.add('hide');
+	}
+});
+
+
+//show and hide the progress indicator
+var show_timeout_pi = (function(){
+	var element_list = document.getElementsByClassName("pi");
+	for (var i = 0; i<element_list.length; i++){
+		element_list[i].classList.remove('hide');
+	}
+	setTimeout(hide_all_pi, 1000);
+});
+
+
+//close all balloons
 var close_all_info = (function() {
 	var i;
 	for(i=0; i< info_list.length; i++){
@@ -362,6 +382,7 @@ var close_all_info = (function() {
 });
 
 
+//click on link to the list
 var click_map_on_rep = (function(id){
 	close_all_info();
 	var marker = marker_list[id];
@@ -442,70 +463,21 @@ var append_rep_html = (function(rep){
 
 
 // Function to load the html for reps
-var load_rep_html = (function(){
-	for(var i=0; i<rep_list.length; i++){
-		append_rep_html(rep_list[i]);
+var populateRepublic = (function(list){
+	document.getElementById("republic_list").innerHTML=''
+	for(var i=0; i<list.length; i++){
+		append_rep_html(list[i]);
 	}
 });
 
 
-function populateRepublics()
-{
-  var list = document.getElementById("republic_list");
-  // cleanRepublics();
-
-  var elements = "";
-
-  // FOR TEST
-  for(var i = 0; i < 5; i++)
-  {
-    // var element =
-    // '<div class="panel-group" id="'+i+'">'+
-    // '<div class="panel panel-default">'+
-    // '<div class="panel-heading">'+
-    // '<div class="panel-title">'+
-    // '<div class="">'+
-    // '<div class="title">'+
-    // '<strong>"Nome da República" - Masculino  </strong><span class="badge">4/7 membros</span>'+
-    // '</div>'+
-    // '<a class="detail" data-toggle="collapse" href="#collapse'+i+'">Mais detalhes</a>'+
-    // '</div>'+
-    // '</div>'+
-    // '</div>'+
-    // '<div id="collapse'+i+'" class="panel-collapse collapse in">'+
-    // '<div class="panel-body">'+
-    // '<p><b>Representante:</b> Jovem 2 <b>FCT</b> - veterano</p>'+
-    // '<p><b>Integrante:</b> Jovem 2 <b>FCT</b> - bixo</p>'+
-    // '<p><b>Integrante:</b> Jovem 2 <b>FCT</b> - veterano</p>'+
-    // '<p><b>Integrante:</b> Jovem 2 <b>FCT</b> - bixo</p>'+
-    // '</div>'+
-    // '</div>'+
-    // '</div>'+
-    // '</div>';
-    //
-    // elements += element;
-  }
-  list.innerHTML = list.innerHTML + elements;
-}
-
-$(document).ready(function()
-{
-  populateFilters([{name:"Todos"},{name:"São Paulo"},{name:"Rio de Janeiro"}],"estado");
-  getDataState("Todos");
-
-  // populateVeterans(veteran_from_state());
-  populateFreshmans(freshman_list);
-  populateVeterans(veteran_list);
-
-  // NEED TO CREATE THE JSON OF THE REPUBLICS AND PASS AS PARAMETER IN THE BELOW INVOCATION.
-  populateRepublics(/**/);
-});
 
 var no_data = [{name:"Não possui dados"}];
 
 // POPULATING STATE
 function getDataState(title)
 {
+	show_timeout_pi();
   // TODOS SELECTED
   if( title == "Todos" )
   {
@@ -543,6 +515,7 @@ function getDataState(title)
 }
 function getDataCity(title)
 {
+	show_timeout_pi();
   // TODOS SELECTED
   if( title == "Todos" )
   {
@@ -586,6 +559,7 @@ function getDataCity(title)
 }
 function getDataUnivesity(title)
 {
+	show_timeout_pi();
   // TODOS SELECTED
   if( title == "Todos" )
   {
@@ -639,6 +613,7 @@ function getDataUnivesity(title)
 }
 function getDataCampus(title)
 {
+	show_timeout_pi();
   // TODOS SELECTED
   if( title == "Todos" )
   {
@@ -687,6 +662,7 @@ function getDataCampus(title)
 }
 function getDataCourse(title)
 {
+	show_timeout_pi();
   var state = document.getElementById("estado");
   var stateValue = state.options[state.selectedIndex].value;
 
@@ -840,7 +816,7 @@ var load_rep_list = (function() {
 });
 
 
-
+//hide markers on map
 function hide_all()
 {
   for (var i = 0; i < marker_list.length; i++) {
@@ -980,24 +956,47 @@ function search_rep(str_search){
 };
 
 
+//set the number of results
+var setFreshmanNmb = (function(nmb){
+	badge = document.getElementById("freshman-search-result");
+	badge.innerHTML = ''+nmb+'';
+})
+
+
+// do a general search 
 function general_search(str_search){
-  vet_filtered_list = search_veteran(str_search);
-  fresh_filtered_list = search_freshman(str_search);
-  rep_filtered_list = search_rep(str_search);
-  populateVeterans(vet_filtered_list);
-  populateFreshmans(fresh_filtered_list);
-  hide_all();
-  for (var i=0; i< rep_filtered_list.length; i++){
-    marker_list[rep_filtered_list[i].id].setMap(map);
-  }
+	vet_filtered_list = search_veteran(str_search);
+	fresh_filtered_list = search_freshman(str_search);
+	rep_filtered_list = search_rep(str_search);
+	populateVeterans(vet_filtered_list);
+	populateFreshmans(fresh_filtered_list);
+	populateRepublic(rep_filtered_list);
+
+	setFreshmanNmb(fresh_filtered_list.length);
+	hide_all();
+	for (var i=0; i< rep_filtered_list.length; i++){
+		marker_list[rep_filtered_list[i].id].setMap(map);
+	}
 };
 
 
 $("#ipt_search").keyup(function() {
-  general_search(this.value);
+	show_timeout_pi();
+	general_search(this.value);
 });
 
 
-load_rep_list();
-load_rep_html();
+$(document).ready(function()
+{
+	populateFilters([{name:"Todos"},{name:"São Paulo"},{name:"Rio de Janeiro"}],"estado");
+	getDataState("Todos");
+
+	// populateVeterans(veteran_from_state());
+	populateFreshmans(freshman_list);
+	populateVeterans(veteran_list);
+
+	// NEED TO CREATE THE JSON OF THE REPUBLICS AND PASS AS PARAMETER IN THE BELOW INVOCATION.
+	load_rep_list();
+	populateRepublic(rep_list);
+});
 
