@@ -175,6 +175,7 @@ var rep_list = [
 ]
 
 var current_rep_list = rep_list;	
+
 var current_freshman_list = freshman_list;
 
 var current_veteran_list = veteran_list;
@@ -475,6 +476,13 @@ var assemb_string_member = (function(member){
 var append_rep_html = (function(rep){
 	
 	var list = document.getElementById("republic_list");
+	var gender = '' 
+	if (rep.gender=='m'){
+		gender = 'Masculino';
+	}
+	else{
+		gender = 'Feminino';
+	}
 	var elements = 
 	'<div id="rep' + rep.id + '" class="panel-group republic">'+
 	'<div  class="panel panel-info" style="position:relative" >'+
@@ -500,6 +508,7 @@ var append_rep_html = (function(rep){
 	'		<div class="content">'+
 	'		<div class="info"><b>Endereço: </b>'+ rep.address.street +
 	'		<p>'+ rep.address.city_state +'</p></div>'+
+	'		<div class="info"><b>Gênero: </b>'+ gender + '</div>'+
 	'		<div class="info"><b>Número de contato: </b>'+ rep.phone + '</div>'+
 	'		<div class="info"><b>Número de vagas: </b>'+ rep.vacancy +'</div>'+
 	'		</div>'+
@@ -530,7 +539,7 @@ var append_rep_html = (function(rep){
 
 // Function to load the html for reps
 var populateRepublic = (function(list){
-	document.getElementById("republic_list").innerHTML=''
+	document.getElementById("republic_list").innerHTML='';
 	for(var i=0; i<list.length; i++){
 		append_rep_html(list[i]);
 	}
@@ -898,7 +907,24 @@ function show_all()
   }
 }
 
-
+var check_gender = (function(male, female){
+	var aux_list = [];
+	if (male){
+		for (var i = 0; i<rep_list.length;i++){
+			if (rep_list[i].gender=='m'){
+				aux_list.push(rep_list[i]);
+			}
+		}		
+	}
+	if (female){
+		for (var i = 0; i<rep_list.length;i++){
+			if (rep_list[i].gender=='f'){
+				aux_list.push(rep_list[i]);
+			}
+		}		
+	}
+	current_rep_list = aux_list;
+});
 function show_female(){
   //show_all();
   marker_list[0].setMap(map);
@@ -934,6 +960,13 @@ $("#ckb_female").change(function() {
   else{
     hide_female();
   }
+	male = document.getElementById("ckb_male").checked;
+	female = document.getElementById("ckb_female").checked;
+	console.log(male);
+	console.log(female);
+	check_gender(male,female);
+	ipt_value = document.getElementById("ipt_search").value;
+	general_search(ipt_value);
 });
 $("#ckb_male").change(function() {
   if(this.checked) {
@@ -942,6 +975,11 @@ $("#ckb_male").change(function() {
   else{
     hide_male();
   }
+	male = document.getElementById("ckb_male").checked;
+	female = document.getElementById("ckb_female").checked;
+	check_gender(male,female);
+	ipt_value = document.getElementById("ipt_search").value;
+	general_search(ipt_value);
 });
 
 
