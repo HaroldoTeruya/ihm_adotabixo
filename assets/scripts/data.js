@@ -174,6 +174,11 @@ var rep_list = [
   }
 ]
 
+var current_rep_list = rep_list;	
+var current_freshman_list = freshman_list;
+
+var current_veteran_list = veteran_list;
+
 //# marker list for google map
 var marker_list = [];
 
@@ -980,7 +985,7 @@ $("#nmb_vacancy").change(function() {
 
 function search_veteran(str_search){
   var result_list = []
-  var items = veteran_list;
+  var items = current_veteran_list;
   for(var i = 0; i < items.length; i++)
   {
     if (items[i].name.indexOf(str_search) >= 0){
@@ -993,7 +998,7 @@ function search_veteran(str_search){
 
 function search_freshman(str_search){
   var result_list = []
-  var items = freshman_list;
+  var items = current_freshman_list;
   for(var i = 0; i < items.length; i++)
   {
     if (items[i].name.indexOf(str_search) >= 0){
@@ -1006,7 +1011,7 @@ function search_freshman(str_search){
 
 function search_rep(str_search){
   var result_list = []
-  var items = rep_list;
+  var items = current_rep_list;
   for(var i = 0; i < items.length; i++)
   {
     if (items[i].name.indexOf(str_search) >= 0){
