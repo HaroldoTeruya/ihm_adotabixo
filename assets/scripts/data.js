@@ -1,4 +1,3 @@
-
 //##################VARS####################
 var freshman_list = [
   {/*will be treated like outsider of Sao Paulo*/
@@ -8,6 +7,9 @@ var freshman_list = [
       "facebook.com/maria",
       "instagram.com/maria"
     ],
+    state: "São Paulo",
+    city: "Presidente Prudente",
+    university: "UNESP",
     campus: "FCT",
     course: "Ciência da Computação"
   },
@@ -18,6 +20,9 @@ var freshman_list = [
       "facebook.com/jorge",
       "instagram.com/jorge"
     ],
+    state: "São Paulo",
+    city: "Presidente Prudente",
+    university: "UNESP",
     campus: "FCT",
     course: "Ciência da Computação"
   },
@@ -28,6 +33,9 @@ var freshman_list = [
       "facebook.com/jose",
       "instagram.com/jose"
     ],
+    state: "São Paulo",
+    city: "Presidente Prudente",
+    university: "UNESP",
     campus: "FIPP",
     course: "Ciência da Computação"
   },
@@ -38,8 +46,11 @@ var freshman_list = [
       "facebook.com/camila",
       "instagram.com/camila"
     ],
-    campus: "FCT",
-    course: "Ciência da Computação"
+    state: "São Paulo",
+    city: "Presidente Prudente",
+    university: "UNESP",
+    campus: "FIPP",
+    course: "Ciência da Computação",
   }
 ]
 
@@ -51,6 +62,9 @@ var veteran_list = [
       "facebook.com/gustavo",
       "instagram.com/gustavo"
     ],
+    state: "São Paulo",
+    city: "Presidente Prudente",
+    university: "UNESP",
     campus: "FCT",
     course: "Geografia"
   },
@@ -61,6 +75,9 @@ var veteran_list = [
       "facebook.com/gabriel",
       "instagram.com/gabriel"
     ],
+    state: "São Paulo",
+    city: "Presidente Prudente",
+    university: "UNESP",
     campus: "FCT",
     course: "Ciência da Computação"
   },
@@ -71,6 +88,9 @@ var veteran_list = [
       "facebook.com/giovana",
       "instagram.com/giovana"
     ],
+    state: "São Paulo",
+    city: "Presidente Prudente",
+    university: "UNESP",
     campus: "FCT",
     course: "Ciência da Computação"
   },
@@ -81,6 +101,9 @@ var veteran_list = [
       "facebook.com/renata",
       "instagram.com/renata"
     ],
+    state: "São Paulo",
+    city: "Presidente Prudente",
+    university: "UNESP",
     campus: "FCT",
     course: "Ciência da Computação"
   }
@@ -90,78 +113,98 @@ var veteran_list = [
 //################# REP LIST
 var rep_list = [
   {
-    name: "Rep0_fera",
+    name: "República Devassas",
     id: 0,
     vacancy: 0,
     gender: "f",
-	phone: "(18) 987678980",
-    owner:veteran_list[2],
+    phone: "(18) 987678980",
+    state: "São Paulo",
+    city: "Presidente Prudente",
+    university: "UNESP",
+    campus: "FCT",
+    course: "Ciência da Computação",
+    owner: veteran_list[2],
     members: [
       freshman_list[0],
       freshman_list[3]
     ],
     address: {
-        street: "R. Osvaldo Nobre Bandeira, 79 - Jardim Aquinopolis",
-        city_state: "Pres. Prudente - SP",
-        location: {
-            lat: -22.133689,
-            lng: -51.410490
-        }
+      street: "R. Osvaldo Nobre Bandeira, 79 - Jardim Aquinopolis",
+      city_state: "Pres. Prudente - SP",
+      location: {
+        lat: -22.133689,
+        lng: -51.410490
+      }
     }
   },
   {
-    name: "Rep1_cacau",
+    name: "República Colmeia",
     id: 1,
     vacancy: 2,
     gender: "f",
-	phone: "(18) 987632980",
+    phone: "(18) 987632980",
+    state: "São Paulo",
+    city: "Presidente Prudente",
+    university: "UNESP",
+    campus: "FCT",
+    course: "Ciência da Computação",
     owner: veteran_list[3],
     members: [],
     address: {
-        street: "R. Caetés, 1 - Jardim Caiçara",
-        city_state: "Pres. Prudente - SP",
-        location: {
-            lat: -22.132188,
-            lng: -51.405523
-        }
+      street: "R. Caetés, 1 - Jardim Caiçara",
+      city_state: "Pres. Prudente - SP",
+      location: {
+        lat: -22.132188,
+        lng: -51.405523
+      }
     }
   },
   {
-    name: "Rep2_bexiga",
+    name: "República Geografia",
     id: 2,
     vacancy: 1,
     gender: "m",
-	phone: "(18) 981238980",
+    phone: "(18) 981238980",
     owner: veteran_list[0],
+    state: "São Paulo",
+    city: "Presidente Prudente",
+    university: "UNESP",
+    campus: "FCT",
+    course: "Geografia",
     members: [
       freshman_list[1],
     ],
     address: {
-        street: "R. Abdala Buchala, 116 - Jardim", 
-        city_state: "Pres. Prudente - SP",
-        location: {
-            lat: -22.121093,
-            lng: -51.412311
-        }
+      street: "R. Abdala Buchala, 116 - Jardim",
+      city_state: "Pres. Prudente - SP",
+      location: {
+        lat: -22.121093,
+        lng: -51.412311
+      }
     }
   },
   {
-    name: "Rep3_barriga",
+    name: "República da Computa",
     id: 3,
     vacancy: 4,
     gender: "m",
-	phone: "(18) 987600170",
+    phone: "(18) 987600170",
     owner: veteran_list[1],
+    state: "São Paulo",
+    city: "Presidente Prudente",
+    university: "UNESP",
+    campus: "FCT",
+    course: "Ciência da Computação",
     members: [
-        freshman_list[2]
+      freshman_list[2]
     ],
     address: {
-        street: "R. Artur Whitaker, 174 - Jardim Campo Belo", 
-        city_state: "Pres. Prudente - SP",
-        location: {
-            lat: -22.123717,
-            lng: -51.413888
-        }
+      street: "R. Artur Whitaker, 174 - Jardim Campo Belo",
+      city_state: "Pres. Prudente - SP",
+      location: {
+        lat: -22.123717,
+        lng: -51.413888
+      }
     }
   }
 ]
@@ -355,97 +398,97 @@ function populateFilters(list,selectId)
 
 
 var close_all_info = (function() {
-	var i;
-	for(i=0; i< info_list.length; i++){
-		info_list[i].close();
-	}
+  var i;
+  for(i=0; i< info_list.length; i++){
+    info_list[i].close();
+  }
 });
 
 
 var click_map_on_rep = (function(id){
-	close_all_info();
-	var marker = marker_list[id];
-	map.panTo(marker.getPosition());
-	marker['info_window'].open(map, marker);
-});	
+  close_all_info();
+  var marker = marker_list[id];
+  map.panTo(marker.getPosition());
+  marker['info_window'].open(map, marker);
+});
 
 
 var assemb_string_member = (function(member){
-	var assemb_string = 
-		'		<div class="well well-sm profile">'+
-		'			<div class="pull-left">'+
-		'			<img class="img-circle" src="assets/images/user.png" alt="" />'+
-		'			</div>'+
-		'			<div class="pull-left content">'+
-		'			<div><span class="title">'+ member.name +' - '+ member.campus +' - </span><span><a href="#">Ver Perfil</a></span></div>'+
-		'			<div>'+ member.course +'</div>'+
-		'			</div>'+
-		'		</div>';
-	return assemb_string;
+  var assemb_string =
+  '		<div class="well well-sm profile">'+
+  '			<div class="pull-left">'+
+  '			<img class="img-circle" src="assets/images/user.png" alt="" />'+
+  '			</div>'+
+  '			<div class="pull-left content">'+
+  '			<div><span class="title">'+ member.name +' - '+ member.campus +' - </span><span><a href="#">Ver Perfil</a></span></div>'+
+  '			<div>'+ member.course +'</div>'+
+  '			</div>'+
+  '		</div>';
+  return assemb_string;
 });
 
- 
+
 var append_rep_html = (function(rep){
-	
-	var list = document.getElementById("republic_list");
-	var elements = 
-	'<div id="rep' + rep.id + '" class="panel-group republic">'+
-	'<div  class="panel panel-info" style="position:relative" >'+
-	'<div class="panel-heading">'+
-	'<div class="panel-title">'+
-	'<div class="">'+
-	'			<div class="title">'+
-	'				<span>'+
-	'					<img class="logo" src="assets/images/home-page.png" alt="" />' +
-	'				</span>'+
-	'				<strong> '+ rep.name +'</strong>'+
-	'				<span> - </span>'+
-	'			</div>'+
-	'			<span>'+
-	'				<a id="rep_on_map'+ rep.id +'" onclick="click_map_on_rep('+rep.id+')"  element_id="'+ rep.id +'" href="#map">Ver no mapa</a>'+
-	'			</span>'+
-	'			<a class="detail" data-toggle="collapse" href="#collapse'+ rep.id +'">Mais detalhes</a>'+
-	'		</div>'+
-	'	</div>'+
-	'	</div>'+
-	'	<div id="collapse'+ rep.id +'" class="panel-collapse collapse ">'+
-	'	<div class="panel-body">'+
-	'		<div class="content">'+
-	'		<div class="info"><b>Endereço: </b>'+ rep.address.street +
-	'		<p>'+ rep.address.city_state +'</p></div>'+
-	'		<div class="info"><b>Número de contato: </b>'+ rep.phone + '</div>'+
-	'		<div class="info"><b>Número de vagas: </b>'+ rep.vacancy +'</div>'+
-	'		</div>'+
-	'		<div class="members">'+
-	'		<label for="">Representante:</label>'+
-	assemb_string_member(rep.owner)+
-	'</div>';
-	if (rep.members.length>0){
-		elements = elements +
-		'		<div class="members">'+
-		'		<label for="">Membros:</label>';
-		var member_string = '';
-		for (var i=0; i<rep.members.length; i++){
-			var member = rep.members[i];
-			member_string = member_string + assemb_string_member(member);		
-		}
-		elements = elements + member_string;
-	}	
-	elements = elements+
-	'</div>'+
-	'</div>'+
-	'</div>'+
-	'</div>'+
-	'</div>';
-	list.innerHTML = list.innerHTML + elements;
+
+  var list = document.getElementById("republic_list");
+  var elements =
+  '<div id="rep' + rep.id + '" class="panel-group republic">'+
+  '<div  class="panel panel-info" style="position:relative" >'+
+  '<div class="panel-heading">'+
+  '<div class="panel-title">'+
+  '<div class="">'+
+  '			<div class="title">'+
+  '				<span>'+
+  '					<img class="logo" src="assets/images/home-page.png" alt="" />' +
+  '				</span>'+
+  '				<strong> '+ rep.name +'</strong>'+
+  '				<span> - </span>'+
+  '			</div>'+
+  '			<span>'+
+  '				<a id="rep_on_map'+ rep.id +'" onclick="click_map_on_rep('+rep.id+')"  element_id="'+ rep.id +'" href="#map">Ver no mapa</a>'+
+  '			</span>'+
+  '			<a class="detail" data-toggle="collapse" href="#collapse'+ rep.id +'">Mais detalhes</a>'+
+  '		</div>'+
+  '	</div>'+
+  '	</div>'+
+  '	<div id="collapse'+ rep.id +'" class="panel-collapse collapse ">'+
+  '	<div class="panel-body">'+
+  '		<div class="content">'+
+  '		<div class="info"><b>Endereço: </b>'+ rep.address.street +
+  '		<p>'+ rep.address.city_state +'</p></div>'+
+  '		<div class="info"><b>Número de contato: </b>'+ rep.phone + '</div>'+
+  '		<div class="info"><b>Número de vagas: </b>'+ rep.vacancy +'</div>'+
+  '		</div>'+
+  '		<div class="members">'+
+  '		<label for="">Representante:</label>'+
+  assemb_string_member(rep.owner)+
+  '</div>';
+  if (rep.members.length>0){
+    elements = elements +
+    '		<div class="members">'+
+    '		<label for="">Membros:</label>';
+    var member_string = '';
+    for (var i=0; i<rep.members.length; i++){
+      var member = rep.members[i];
+      member_string = member_string + assemb_string_member(member);
+    }
+    elements = elements + member_string;
+  }
+  elements = elements+
+  '</div>'+
+  '</div>'+
+  '</div>'+
+  '</div>'+
+  '</div>';
+  list.innerHTML = list.innerHTML + elements;
 });
 
 
 // Function to load the html for reps
 var load_rep_html = (function(){
-	for(var i=0; i<rep_list.length; i++){
-		append_rep_html(rep_list[i]);
-	}
+  for(var i=0; i<rep_list.length; i++){
+    append_rep_html(rep_list[i]);
+  }
 });
 
 
@@ -648,19 +691,19 @@ function getDataCampus(title)
     switch( elementValue )
     {
       case "UNESP":
-        populateFilters([{name:"Todos"},{name:"Ciência da Computação"},{name:"Geografia"}],"curso");
-        populateFreshmans(freshman_fct());
-        populateVeterans(veteran_list);
+      populateFilters([{name:"Todos"},{name:"Ciência da Computação"},{name:"Geografia"}],"curso");
+      populateFreshmans(freshman_fct());
+      populateVeterans(veteran_list);
       return;
       case "UNOESTE":
-        populateFilters([{name:"Todos"},{name:"Ciência da Computação"}],"curso");
-        populateFreshmans(freshman_fipp());
-        cleanVeterans();
+      populateFilters([{name:"Todos"},{name:"Ciência da Computação"}],"curso");
+      populateFreshmans(freshman_fipp());
+      cleanVeterans();
       return;
       case "TODOS":
-        populateFilters([{name:"Todos"},{name:"Ciência da Computação"},{name:"Geografia"}],"curso");
-        populateFreshmans(freshman_list);
-        populateVeterans(veteran_list);
+      populateFilters([{name:"Todos"},{name:"Ciência da Computação"},{name:"Geografia"}],"curso");
+      populateFreshmans(freshman_list);
+      populateVeterans(veteran_list);
       return;
       case "UFRJ":
       return;
@@ -699,305 +742,304 @@ function getDataCourse(title)
   switch( stateValue )
   {
     case "Rio de Janeiro":
-      cleanFreshmans();
-      cleanVeterans();
-      return;
+    cleanFreshmans();
+    cleanVeterans();
+    return;
 
     // TODOS/SÃO PAULO SELECTED
     default:
-      switch( universityValue )
+    switch( universityValue )
+    {
+      case "Todos":
+      switch( campusValue )
       {
-          case "Todos":
-            switch( campusValue )
-            {
-              case "Todos":
-              {
-                if( title == "Geografia" )
-                {
-                  cleanFreshmans();
-                  populateVeterans(veteran_geo());
-                }
-                else if( title == "Ciência da Computação" )
-                {
-                  populateFreshmans(freshman_list);
-                  populateVeterans(veteran_cc());
-                }
-                else if( title == "Todos" )
-                {
-                  populateFreshmans(freshman_list);
-                  populateVeterans(veteran_list);
-                }
-              }
-              return;
-              case "FCT":
-              {
-                if( title == "Geografia" )
-                {
-                  cleanFreshmans();
-                  populateVeterans(veteran_geo());
-                }
-                else if( title == "Ciência da Computação" )
-                {
-                  populateFreshmans(freshman_fct());
-                  populateVeterans(veteran_cc());
-                }
-                else if( title == "Todos" )
-                {
-                  populateFreshmans(freshman_fct());
-                  populateVeterans(veteran_list);
-                }
-              }
-              return;
-              case "FIPP":
-              {
-                if( title == "Geografia" )
-                {
-                  cleanFreshmans();
-                  cleanVeterans();
-                }
-                else if( title == "Ciência da Computação" )
-                {
-                  populateFreshmans(freshman_fipp());
-                  cleanVeterans();
-                }
-                else if( title == "Todos" )
-                {
-                  populateFreshmans(freshman_fipp());
-                  cleanVeterans();
-                }
-              }
-              return;
-            }
-            return;
-          case "UNESP":
-            if( title == "Geografia" )
-            {
-              cleanFreshmans();
-              populateVeterans(veteran_geo());
-            }
-            else if( title == "Ciência da Computação" )
-            {
-              populateFreshmans(freshman_fct());
-              populateVeterans(veteran_cc());
-            }
-            else if( title == "Todos" )
-            {
-              populateFreshmans(freshman_fct());
-              populateVeterans(veteran_list);
-            }
-            return;
-          case "UNOESTE":
-            if( title == "Geografia" )
-            {
-              cleanFreshmans();
-              cleanVeterans();
-            }
-            else if( title == "Ciência da Computação" )
-            {
-              populateFreshmans(freshman_fipp());
-              cleanVeterans();
-            }
-            else if( title == "Todos" )
-            {
-              populateFreshmans(freshman_fipp());
-              cleanVeterans();
-            }
-            return;
-          return;
+        case "Todos":
+        {
+          if( title == "Geografia" )
+          {
+            cleanFreshmans();
+            populateVeterans(veteran_geo());
+          }
+          else if( title == "Ciência da Computação" )
+          {
+            populateFreshmans(freshman_list);
+            populateVeterans(veteran_cc());
+          }
+          else if( title == "Todos" )
+          {
+            populateFreshmans(freshman_list);
+            populateVeterans(veteran_list);
+          }
+        }
+        return;
+        case "FCT":
+        {
+          if( title == "Geografia" )
+          {
+            cleanFreshmans();
+            populateVeterans(veteran_geo());
+          }
+          else if( title == "Ciência da Computação" )
+          {
+            populateFreshmans(freshman_fct());
+            populateVeterans(veteran_cc());
+          }
+          else if( title == "Todos" )
+          {
+            populateFreshmans(freshman_fct());
+            populateVeterans(veteran_list);
+          }
+        }
+        return;
+        case "FIPP":
+        {
+          if( title == "Geografia" )
+          {
+            cleanFreshmans();
+            cleanVeterans();
+          }
+          else if( title == "Ciência da Computação" )
+          {
+            populateFreshmans(freshman_fipp());
+            cleanVeterans();
+          }
+          else if( title == "Todos" )
+          {
+            populateFreshmans(freshman_fipp());
+            cleanVeterans();
+          }
+        }
+        return;
       }
+      return;
+      case "UNESP":
+      if( title == "Geografia" )
+      {
+        cleanFreshmans();
+        populateVeterans(veteran_geo());
+      }
+      else if( title == "Ciência da Computação" )
+      {
+        populateFreshmans(freshman_fct());
+        populateVeterans(veteran_cc());
+      }
+      else if( title == "Todos" )
+      {
+        populateFreshmans(freshman_fct());
+        populateVeterans(veteran_list);
+      }
+      return;
+      case "UNOESTE":
+      if( title == "Geografia" )
+      {
+        cleanFreshmans();
+        cleanVeterans();
+      }
+      else if( title == "Ciência da Computação" )
+      {
+        populateFreshmans(freshman_fipp());
+        cleanVeterans();
+      }
+      else if( title == "Todos" )
+      {
+        populateFreshmans(freshman_fipp());
+        cleanVeterans();
+      }
+      return;
+      return;
+    }
     return;
   }
 }
 
 // Function to load the streets and info windows
 var load_rep_list = (function() {
-	for(var i=0; i< rep_list.length; i++){
-		var info_window = new google.maps.InfoWindow({
-			content: "<p><b>" + rep_list[i].name + "</b></p>" +
-				"<p>" + rep_list[i].address.street + "</p>" +
-				"<p>" +  rep_list[i].address.city_state + "</p>" +
-				"<p><a id='link_rep" + i + "' href='#rep" + i + "'"+
-				" element_id='"+ i +"'>" +
-				"Mais Informações</a></p>"});
-		var marker = new google.maps.Marker({
-			position: rep_list[i].address.location,
-			map: map,
-		});
-		marker['info_window'] = info_window;
-		marker['id'] = i;
-		marker.addListener('click', function() {
-			close_all_info();
-			this['info_window'].open(map, this);
-			document.getElementById("link_rep"+this['id']).addEventListener("click", function(){
-				var id = this.getAttribute("element_id");
-				document.getElementById("collapse"+id).setAttribute("class",
-										"in");
-			});
-		});
-		info_list.push(info_window);
-		marker_list.push(marker);
-	}
-});
+  for(var i=0; i< rep_list.length; i++){
+    var info_window = new google.maps.InfoWindow({
+      content: "<p><b>" + rep_list[i].name + "</b></p>" +
+      "<p>" + rep_list[i].address.street + "</p>" +
+      "<p>" +  rep_list[i].address.city_state + "</p>" +
+      "<p><a id='link_rep" + i + "' href='#rep" + i + "'"+
+      " element_id='"+ i +"'>" +
+      "Mais Informações</a></p>"});
+      var marker = new google.maps.Marker({
+        position: rep_list[i].address.location,
+        map: map,
+      });
+      marker['info_window'] = info_window;
+      marker['id'] = i;
+      marker.addListener('click', function() {
+        close_all_info();
+        this['info_window'].open(map, this);
+        document.getElementById("link_rep"+this['id']).addEventListener("click", function(){
+          var id = this.getAttribute("element_id");
+          document.getElementById("collapse"+id).setAttribute("class",
+          "in");
+        });
+      });
+      info_list.push(info_window);
+      marker_list.push(marker);
+    }
+  });
 
 
 
-function hide_all()
-{
-  for (var i = 0; i < marker_list.length; i++) {
-    marker_list[i].setMap(null);
+  function hide_all()
+  {
+    for (var i = 0; i < marker_list.length; i++) {
+      marker_list[i].setMap(null);
+    }
   }
-}
 
 
-function show_all()
-{
-  for (var i = 0; i < marker_list.length; i++) {
-    marker_list[i].setMap(map);
+  function show_all()
+  {
+    for (var i = 0; i < marker_list.length; i++) {
+      marker_list[i].setMap(map);
+    }
   }
-}
 
 
-function show_female(){
-  //show_all();
-  marker_list[0].setMap(map);
-  marker_list[1].setMap(map);
-}
-function hide_female(){
-  //show_all();
-  marker_list[0].setMap(null);
-  marker_list[1].setMap(null);
-}
-function show_male(){
-  //show_all();
-  marker_list[2].setMap(map);
-  marker_list[3].setMap(map);
-}
-function hide_male(){
-  //show_all();
-  marker_list[2].setMap(null);
-  marker_list[3].setMap(null);
-}
-function hide_less_than4()
-{
-  //show_all();
-  marker_list[0].setMap(null);
-  marker_list[1].setMap(null);
-  marker_list[2].setMap(null);
-}
-
-$("#ckb_female").change(function() {
-  if(this.checked) {
-    show_female();
-  }
-  else{
-    hide_female();
-  }
-});
-$("#ckb_male").change(function() {
-  if(this.checked) {
-    show_male();
-  }
-  else{
-    hide_male();
-  }
-});
-
-
-var nmb_vacancy_changed = (function(value) {
-
-  if (value>1 && value <=4){
-    marker_list[0].setMap(null);
-    marker_list[1].setMap(null);
-    marker_list[2].setMap(null);
-    marker_list[3].setMap(map);
-  }
-  else if (value>4){
-    marker_list[3].setMap(null);
-    marker_list[0].setMap(null);
-    marker_list[1].setMap(null);
-    marker_list[2].setMap(null);
-  }
-  else{
+  function show_female(){
+    //show_all();
     marker_list[0].setMap(map);
     marker_list[1].setMap(map);
+  }
+  function hide_female(){
+    //show_all();
+    marker_list[0].setMap(null);
+    marker_list[1].setMap(null);
+  }
+  function show_male(){
+    //show_all();
     marker_list[2].setMap(map);
     marker_list[3].setMap(map);
   }
-
-});
-
-
-$("#nmb_vacancy").keyup(function() {
-
-	nmb_vacancy_changed(this.value);
-
-});
-
-
-$("#nmb_vacancy").change(function() {
-
-	nmb_vacancy_changed(this.value);
-
-});
-
-
-function search_veteran(str_search){
-  var result_list = []
-  var items = veteran_list;
-  for(var i = 0; i < items.length; i++)
+  function hide_male(){
+    //show_all();
+    marker_list[2].setMap(null);
+    marker_list[3].setMap(null);
+  }
+  function hide_less_than4()
   {
-    if (items[i].name.indexOf(str_search) >= 0){
-      result_list.push(items[i]);
+    //show_all();
+    marker_list[0].setMap(null);
+    marker_list[1].setMap(null);
+    marker_list[2].setMap(null);
+  }
+
+  $("#ckb_female").change(function() {
+    if(this.checked) {
+      show_female();
     }
-  }
-  return result_list;
-};
-
-
-function search_freshman(str_search){
-  var result_list = []
-  var items = freshman_list;
-  for(var i = 0; i < items.length; i++)
-  {
-    if (items[i].name.indexOf(str_search) >= 0){
-      result_list.push(items[i]);
+    else{
+      hide_female();
     }
-  }
-  return result_list;
-};
-
-
-function search_rep(str_search){
-  var result_list = []
-  var items = rep_list;
-  for(var i = 0; i < items.length; i++)
-  {
-    if (items[i].name.indexOf(str_search) >= 0){
-      result_list.push(items[i]);
+  });
+  $("#ckb_male").change(function() {
+    if(this.checked) {
+      show_male();
     }
-  }
-  return result_list;
-};
+    else{
+      hide_male();
+    }
+  });
 
 
-function general_search(str_search){
-  vet_filtered_list = search_veteran(str_search);
-  fresh_filtered_list = search_freshman(str_search);
-  rep_filtered_list = search_rep(str_search);
-  populateVeterans(vet_filtered_list);
-  populateFreshmans(fresh_filtered_list);
-  hide_all();
-  for (var i=0; i< rep_filtered_list.length; i++){
-    marker_list[rep_filtered_list[i].id].setMap(map);
-  }
-};
+  var nmb_vacancy_changed = (function(value) {
+
+    if (value>1 && value <=4){
+      marker_list[0].setMap(null);
+      marker_list[1].setMap(null);
+      marker_list[2].setMap(null);
+      marker_list[3].setMap(map);
+    }
+    else if (value>4){
+      marker_list[3].setMap(null);
+      marker_list[0].setMap(null);
+      marker_list[1].setMap(null);
+      marker_list[2].setMap(null);
+    }
+    else{
+      marker_list[0].setMap(map);
+      marker_list[1].setMap(map);
+      marker_list[2].setMap(map);
+      marker_list[3].setMap(map);
+    }
+
+  });
 
 
-$("#ipt_search").keyup(function() {
-  general_search(this.value);
-});
+  $("#nmb_vacancy").keyup(function() {
+
+    nmb_vacancy_changed(this.value);
+
+  });
 
 
-load_rep_list();
-load_rep_html();
+  $("#nmb_vacancy").change(function() {
 
+    nmb_vacancy_changed(this.value);
+
+  });
+
+
+  function search_veteran(str_search){
+    var result_list = []
+    var items = veteran_list;
+    for(var i = 0; i < items.length; i++)
+    {
+      if (items[i].name.indexOf(str_search) >= 0){
+        result_list.push(items[i]);
+      }
+    }
+    return result_list;
+  };
+
+
+  function search_freshman(str_search){
+    var result_list = []
+    var items = freshman_list;
+    for(var i = 0; i < items.length; i++)
+    {
+      if (items[i].name.indexOf(str_search) >= 0){
+        result_list.push(items[i]);
+      }
+    }
+    return result_list;
+  };
+
+
+  function search_rep(str_search){
+    var result_list = []
+    var items = rep_list;
+    for(var i = 0; i < items.length; i++)
+    {
+      if (items[i].name.indexOf(str_search) >= 0){
+        result_list.push(items[i]);
+      }
+    }
+    return result_list;
+  };
+
+
+  function general_search(str_search){
+    vet_filtered_list = search_veteran(str_search);
+    fresh_filtered_list = search_freshman(str_search);
+    rep_filtered_list = search_rep(str_search);
+    populateVeterans(vet_filtered_list);
+    populateFreshmans(fresh_filtered_list);
+    hide_all();
+    for (var i=0; i< rep_filtered_list.length; i++){
+      marker_list[rep_filtered_list[i].id].setMap(map);
+    }
+  };
+
+
+  $("#ipt_search").keyup(function() {
+    general_search(this.value);
+  });
+
+
+  load_rep_list();
+  load_rep_html();
