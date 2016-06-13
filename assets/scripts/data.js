@@ -193,8 +193,11 @@ var map = new google.maps.Map(document.getElementById('map'), {
   mapTypeId: google.maps.MapTypeId.ROADMAP
 });
 
+var no_data = [{name:"Não possui dados"}];
 
 //#####################FUNCTIONS####################
+
+
 function veteran_from_state()
 {
   return veteran_list;
@@ -274,6 +277,7 @@ function cleanVeterans()
   {
     list.removeChild(list.lastChild);
   }
+	setVeteranNmb(0);
 }
 function cleanFreshmans()
 {
@@ -282,6 +286,7 @@ function cleanFreshmans()
   {
     list.removeChild(list.lastChild);
   }
+	setFreshmanNmb(0);
 }
 function cleanRepublics()
 {
@@ -290,6 +295,7 @@ function cleanRepublics()
   {
     list.removeChild(list.lastChild);
   }
+	setRepublicNmb(0);
 }
 
 function getParameterByName(name, url) {
@@ -392,6 +398,7 @@ var populateVeterans = (function (items){
 	var list = document.getElementById("veteran_list");
 	cleanVeterans();
 	populatePeapleList(items, list, 'veteran');	
+	setVeteranNmb(items.length);
 });
 
 
@@ -399,6 +406,8 @@ var populateFreshmans = (function (items){
 	var list = document.getElementById("freshman_list");
 	cleanFreshmans();
 	populatePeapleList(items, list, 'freshman');
+	setFreshmanNmb(items.length);
+
 });
 
 
@@ -543,12 +552,99 @@ var populateRepublic = (function(list){
 	for(var i=0; i<list.length; i++){
 		append_rep_html(list[i]);
 	}
+	setRepublicNmb(list.length);
 });
 
 
 
-var no_data = [{name:"Não possui dados"}];
 
+//var state
+var filter_search = (function(list, key, value){
+	var aux_list = [];
+	for(var i=0; i<list.length; i++){
+		if(list[i][key]==value){
+			aux_list.push(list[i]);
+		}
+	}
+	return aux_list.slice();
+});
+
+
+var search_name_like_list = (function (list, str_search){
+  var result_list = []
+  for(var i = 0; i < list.length; i++)
+  {
+    if (list[i].name.indexOf(str_search) >= 0){
+      result_list.push(list[i]);
+    }
+  }
+  return result_list.slice();
+});
+
+
+var filter_all = (function(){
+	var freshman_list_aux = freshman_list.slice();
+	var veteran_list_aux = veteran_list.slice();
+	var rep_list_aux = rep_list.slice();
+
+	var state = document.getElementById("estado");
+	var stateValue = state.options[state.selectedIndex].value;
+
+	var city = document.getElementById("cidade");
+	var cityValue = city.options[city.selectedIndex].value;
+  
+	var university = document.getElementById("universidade");
+	var universityValue = university.options[university.selectedIndex].value;
+
+	var campus = document.getElementById("campus");
+	var campusValue = campus.options[campus.selectedIndex].value;
+
+	var course = document.getElementById("curso");
+	var courseValue = course.options[course.selectedIndex].value;
+
+	var male = document.getElementById("ckb_male").checked;
+	var female = document.getElementById("ckb_female").checked;
+	var vacancy = document.getElementById("nmb_vacancy").value;
+	var search_value = document.getElementById("ipt_search").value;
+
+	//########## freshman_search
+	//filtering state
+	if (stateValue != "Todos" && stateValue !="Não possui dados"){
+		freshman_list_aux = filter_search(freshman_list_aux,'state',stateValue);
+	}
+	//filtering city
+	if (cityValue != "Todos" && cityValue !="Não possui dados"){
+		freshman_list_aux = filter_search(freshman_list_aux,'city', cityValue);
+	}
+	//filtering university
+	if (universityValue != "Todos" && universityValue !="Não possui dados"){
+		freshman_list_aux = filter_search(freshman_list_aux, 'university', universityValue);
+	}
+	//filtering campus
+	if (campusValue != "Todos" && campusValue !="Não possui dados"){
+		freshman_list_aux = filter_search(freshman_list_aux, 'campus', campusValue);
+	}
+	//filtering course
+	if (courseValue != "Todos" && courseValue !="Não possui dados"){
+		freshman_list_aux = filter_search(freshman_list_aux, 'course', courseValue);
+	}
+	//searching text
+	freshman_list_aux = search_name_like_list(freshman_list_aux, search_value);
+	//populate freshman
+	populateFreshmans(freshman_list_aux);
+	//set badge value
+	setFreshmanNmb(freshman_list_aux.length);
+
+	//populateVeterans(vet_filtered_list);
+	//populateRepublic(rep_filtered_list);
+
+	//setVeteranNmb(vet_filtered_list.length);
+	//setRepublicNmb(rep_filtered_list.length);
+
+	
+
+ 
+});
 // POPULATING STATE
 function getDataState(title)
 {
@@ -561,9 +657,8 @@ function getDataState(title)
     populateFilters([{name:"Todos"},{name:"FCT"},{name:"FIPP"}],"campus");
     populateFilters([{name:"Todos"},{name:"Ciência da Computação"},{name:"Geografia"}],"curso");
 
-    // populateVeterans(veteran_from_state());
-    populateFreshmans(freshman_list);
-    populateVeterans(veteran_list);
+    //populateFreshmans(freshman_list);
+    //populateVeterans(veteran_list);
   }
   // SÃO PAULO SELECTED
   else if( title == "São Paulo" )
@@ -573,8 +668,8 @@ function getDataState(title)
     populateFilters([{name:"Todos"},{name:"FCT"},{name:"FIPP"}],"campus");
     populateFilters([{name:"Todos"},{name:"Ciência da Computação"},{name:"Geografia"}],"curso");
 
-    populateFreshmans(freshman_list);
-    populateVeterans(veteran_list);
+    //populateFreshmans(freshman_list);
+    //populateVeterans(veteran_list);
   }
   // RIO DE JANEIRO SELECTED
   else
@@ -584,9 +679,10 @@ function getDataState(title)
     populateFilters(no_data,"campus");
     populateFilters(no_data,"curso");
 
-    cleanFreshmans();
-    cleanVeterans();
+    //cleanFreshmans();
+    //cleanVeterans();
   }
+	filter_all();
 }
 function getDataCity(title)
 {
@@ -598,8 +694,8 @@ function getDataCity(title)
     populateFilters([{name:"Todos"},{name:"FCT"},{name:"FIPP"}],"campus");
     populateFilters([{name:"Todos"},{name:"Ciência da Computação"},{name:"Geografia"}],"curso");
 
-    populateFreshmans(freshman_list);
-    populateVeterans(veteran_list);
+    //populateFreshmans(freshman_list);
+    //populateVeterans(veteran_list);
   }
   // PRESIDENTE PRUDENTE SELECTED
   else if( title == "Presidente Prudente" )
@@ -608,8 +704,8 @@ function getDataCity(title)
     populateFilters([{name:"Todos"},{name:"FCT"},{name:"FIPP"}],"campus");
     populateFilters([{name:"Todos"},{name:"Ciência da Computação"},{name:"Geografia"}],"curso");
 
-    populateFreshmans(freshman_list);
-    populateVeterans(veteran_list);
+    //populateFreshmans(freshman_list);
+    //populateVeterans(veteran_list);
   }
   // SÃO JOSÉ DO RIO PRETO SELECTED
   else if( title == "São José do Rio Preto" )
@@ -618,8 +714,8 @@ function getDataCity(title)
     populateFilters(no_data,"campus");
     populateFilters(no_data,"curso");
 
-    cleanFreshmans();
-    cleanVeterans();
+    //cleanFreshmans();
+    //cleanVeterans();
   }
   // RIO DE JANEIRO SELECTED
   else
@@ -628,9 +724,10 @@ function getDataCity(title)
     populateFilters(no_data,"campus");
     populateFilters(no_data,"curso");
 
-    cleanFreshmans();
-    cleanVeterans();
+    //cleanFreshmans();
+    //cleanVeterans();
   }
+	filter_all();
 }
 function getDataUnivesity(title)
 {
@@ -646,13 +743,13 @@ function getDataUnivesity(title)
 
     if( elementValue == "Presidente Prudente" )
     {
-      populateFreshmans(freshman_list);
-      populateVeterans(veteran_list);
+      //populateFreshmans(freshman_list);
+      //populateVeterans(veteran_list);
     }
     else
     {
-      cleanFreshmans();
-      cleanVeterans();
+      //cleanFreshmans();
+      //cleanVeterans();
     }
   }
 
@@ -662,8 +759,8 @@ function getDataUnivesity(title)
     populateFilters([{name:"Todos"},{name:"FCT"}],"campus");
     populateFilters([{name:"Todos"},{name:"Ciência da Computação"},{name:"Geografia"}],"curso");
 
-    populateFreshmans(freshman_fct());
-    populateVeterans(veteran_list);
+    //populateFreshmans(freshman_fct());
+    //populateVeterans(veteran_list);
   }
 
   // FIPP SELECTED
@@ -672,8 +769,8 @@ function getDataUnivesity(title)
     populateFilters([{name:"Todos"},{name:"FIPP"}],"campus");
     populateFilters([{name:"Todos"},{name:"Ciência da Computação"}],"curso");
 
-    populateFreshmans(freshman_fipp());
-    cleanVeterans();
+    //populateFreshmans(freshman_fipp());
+    //cleanVeterans();
   }
 
   // UFRG
@@ -682,13 +779,15 @@ function getDataUnivesity(title)
     populateFilters(no_data,"campus");
     populateFilters(no_data,"curso");
 
-    cleanFreshmans();
-    cleanVeterans();
+    //cleanFreshmans();
+    //cleanVeterans();
   }
+	filter_all();
 }
 function getDataCampus(title)
 {
 	show_timeout_pi();
+	filter_all();
   // TODOS SELECTED
   if( title == "Todos" )
   {
@@ -699,18 +798,18 @@ function getDataCampus(title)
     {
       case "UNESP":
         populateFilters([{name:"Todos"},{name:"Ciência da Computação"},{name:"Geografia"}],"curso");
-        populateFreshmans(freshman_fct());
-        populateVeterans(veteran_list);
+        //populateFreshmans(freshman_fct());
+        //populateVeterans(veteran_list);
       return;
       case "UNOESTE":
         populateFilters([{name:"Todos"},{name:"Ciência da Computação"}],"curso");
-        populateFreshmans(freshman_fipp());
-        cleanVeterans();
+        //populateFreshmans(freshman_fipp());
+        //cleanVeterans();
       return;
       case "TODOS":
         populateFilters([{name:"Todos"},{name:"Ciência da Computação"},{name:"Geografia"}],"curso");
-        populateFreshmans(freshman_list);
-        populateVeterans(veteran_list);
+        //populateFreshmans(freshman_list);
+        //populateVeterans(veteran_list);
       return;
       case "UFRJ":
       return;
@@ -722,8 +821,8 @@ function getDataCampus(title)
   {
     populateFilters([{name:"Todos"},{name:"Ciência da Computação"},{name:"Geografia"}],"curso");
 
-    populateFreshmans(freshman_fct());
-    populateVeterans(veteran_list);
+    //populateFreshmans(freshman_fct());
+    //populateVeterans(veteran_list);
   }
 
   // FIPP SELECTED
@@ -731,13 +830,15 @@ function getDataCampus(title)
   {
     populateFilters([{name:"Todos"},{name:"Ciência da Computação"}],"curso");
 
-    populateFreshmans(freshman_fipp());
-    cleanVeterans();
+    //populateFreshmans(freshman_fipp());
+    //cleanVeterans();
   }
+	filter_all();
 }
 function getDataCourse(title)
 {
 	show_timeout_pi();
+	filter_all();
   var state = document.getElementById("estado");
   var stateValue = state.options[state.selectedIndex].value;
 
@@ -750,8 +851,8 @@ function getDataCourse(title)
   switch( stateValue )
   {
     case "Rio de Janeiro":
-      cleanFreshmans();
-      cleanVeterans();
+      //cleanFreshmans();
+      //cleanVeterans();
       return;
 
     // TODOS/SÃO PAULO SELECTED
@@ -765,18 +866,18 @@ function getDataCourse(title)
               {
                 if( title == "Geografia" )
                 {
-                  cleanFreshmans();
-                  populateVeterans(veteran_geo());
+                  //cleanFreshmans();
+                  //populateVeterans(veteran_geo());
                 }
                 else if( title == "Ciência da Computação" )
                 {
-                  populateFreshmans(freshman_list);
-                  populateVeterans(veteran_cc());
+                  //populateFreshmans(freshman_list);
+                  //populateVeterans(veteran_cc());
                 }
                 else if( title == "Todos" )
                 {
-                  populateFreshmans(freshman_list);
-                  populateVeterans(veteran_list);
+                  //populateFreshmans(freshman_list);
+                  //populateVeterans(veteran_list);
                 }
               }
               return;
@@ -784,18 +885,18 @@ function getDataCourse(title)
               {
                 if( title == "Geografia" )
                 {
-                  cleanFreshmans();
-                  populateVeterans(veteran_geo());
+                  //cleanFreshmans();
+                  //populateVeterans(veteran_geo());
                 }
                 else if( title == "Ciência da Computação" )
                 {
-                  populateFreshmans(freshman_fct());
-                  populateVeterans(veteran_cc());
+                  //populateFreshmans(freshman_fct());
+                  //populateVeterans(veteran_cc());
                 }
                 else if( title == "Todos" )
                 {
-                  populateFreshmans(freshman_fct());
-                  populateVeterans(veteran_list);
+                  //populateFreshmans(freshman_fct());
+                  //populateVeterans(veteran_list);
                 }
               }
               return;
@@ -803,18 +904,18 @@ function getDataCourse(title)
               {
                 if( title == "Geografia" )
                 {
-                  cleanFreshmans();
-                  cleanVeterans();
+                  //cleanFreshmans();
+                  //cleanVeterans();
                 }
                 else if( title == "Ciência da Computação" )
                 {
-                  populateFreshmans(freshman_fipp());
-                  cleanVeterans();
+                  //populateFreshmans(freshman_fipp());
+                  //cleanVeterans();
                 }
                 else if( title == "Todos" )
                 {
-                  populateFreshmans(freshman_fipp());
-                  cleanVeterans();
+                  //populateFreshmans(freshman_fipp());
+                  //cleanVeterans();
                 }
               }
               return;
@@ -823,41 +924,42 @@ function getDataCourse(title)
           case "UNESP":
             if( title == "Geografia" )
             {
-              cleanFreshmans();
-              populateVeterans(veteran_geo());
+              //cleanFreshmans();
+              //populateVeterans(veteran_geo());
             }
             else if( title == "Ciência da Computação" )
             {
-              populateFreshmans(freshman_fct());
-              populateVeterans(veteran_cc());
+              //populateFreshmans(freshman_fct());
+              //populateVeterans(veteran_cc());
             }
             else if( title == "Todos" )
             {
-              populateFreshmans(freshman_fct());
-              populateVeterans(veteran_list);
+              //populateFreshmans(freshman_fct());
+              //populateVeterans(veteran_list);
             }
             return;
           case "UNOESTE":
             if( title == "Geografia" )
             {
-              cleanFreshmans();
-              cleanVeterans();
+              //cleanFreshmans();
+              //cleanVeterans();
             }
             else if( title == "Ciência da Computação" )
             {
-              populateFreshmans(freshman_fipp());
-              cleanVeterans();
+              //populateFreshmans(freshman_fipp());
+              //cleanVeterans();
             }
             else if( title == "Todos" )
             {
-              populateFreshmans(freshman_fipp());
-              cleanVeterans();
+              //populateFreshmans(freshman_fipp());
+              //cleanVeterans();
             }
             return;
           return;
       }
     return;
   }
+	filter_all();
 }
 
 // Function to load the streets and info windows
@@ -953,6 +1055,11 @@ function hide_less_than4()
   marker_list[2].setMap(null);
 }
 
+var reSearch = (function(){
+	ipt_value = document.getElementById("ipt_search").value;
+	general_search(ipt_value);
+});
+
 $("#ckb_female").change(function() {
   if(this.checked) {
     show_female();
@@ -965,8 +1072,7 @@ $("#ckb_female").change(function() {
 	console.log(male);
 	console.log(female);
 	check_gender(male,female);
-	ipt_value = document.getElementById("ipt_search").value;
-	general_search(ipt_value);
+	reSearch();
 });
 $("#ckb_male").change(function() {
   if(this.checked) {
@@ -978,32 +1084,21 @@ $("#ckb_male").change(function() {
 	male = document.getElementById("ckb_male").checked;
 	female = document.getElementById("ckb_female").checked;
 	check_gender(male,female);
-	ipt_value = document.getElementById("ipt_search").value;
-	general_search(ipt_value);
+	reSearch();
 });
-
 
 var nmb_vacancy_changed = (function(value) {
 
-  if (value>1 && value <=4){
-    marker_list[0].setMap(null);
-    marker_list[1].setMap(null);
-    marker_list[2].setMap(null);
-    marker_list[3].setMap(map);
-  }
-  else if (value>4){
-    marker_list[3].setMap(null);
-    marker_list[0].setMap(null);
-    marker_list[1].setMap(null);
-    marker_list[2].setMap(null);
-  }
-  else{
-    marker_list[0].setMap(map);
-    marker_list[1].setMap(map);
-    marker_list[2].setMap(map);
-    marker_list[3].setMap(map);
-  }
-
+	hide_all();
+	var aux_list = [];
+	for (var i = 0; i<rep_list.length;i++){
+		if (rep_list[i].vacancy>=value){
+			aux_list.push(rep_list[i]);
+			marker_list[i].setMap(map);
+		}
+	}		
+	current_rep_list = aux_list;
+	reSearch();
 });
 
 
@@ -1102,7 +1197,8 @@ function general_search(str_search){
 
 $("#ipt_search").keyup(function() {
 	show_timeout_pi();
-	general_search(this.value);
+	filter_all();
+	//general_search(this.value);
 });
 
 
