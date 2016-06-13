@@ -1,4 +1,3 @@
-
 //##################VARS####################
 var freshman_list = [
   {/*will be treated like outsider of Sao Paulo*/
@@ -9,6 +8,9 @@ var freshman_list = [
       "facebook.com/maria",
       "instagram.com/maria"
     ],
+    state: "São Paulo",
+    city: "Presidente Prudente",
+    university: "UNESP",
     campus: "FCT",
     course: "Ciência da Computação"
   },
@@ -20,6 +22,9 @@ var freshman_list = [
       "facebook.com/jorge",
       "instagram.com/jorge"
     ],
+    state: "São Paulo",
+    city: "Presidente Prudente",
+    university: "UNESP",
     campus: "FCT",
     course: "Ciência da Computação"
   },
@@ -31,6 +36,9 @@ var freshman_list = [
       "facebook.com/jose",
       "instagram.com/jose"
     ],
+    state: "São Paulo",
+    city: "Presidente Prudente",
+    university: "UNOESTE",
     campus: "FIPP",
     course: "Ciência da Computação"
   },
@@ -42,8 +50,11 @@ var freshman_list = [
       "facebook.com/camila",
       "instagram.com/camila"
     ],
+    state: "São Paulo",
+    city: "Presidente Prudente",
+    university: "UNESP",
     campus: "FCT",
-    course: "Ciência da Computação"
+    course: "Ciência da Computação",
   }
 ]
 
@@ -56,6 +67,9 @@ var veteran_list = [
       "facebook.com/gustavo",
       "instagram.com/gustavo"
     ],
+    state: "São Paulo",
+    city: "Presidente Prudente",
+    university: "UNESP",
     campus: "FCT",
     course: "Geografia"
   },
@@ -67,6 +81,9 @@ var veteran_list = [
       "facebook.com/gabriel",
       "instagram.com/gabriel"
     ],
+    state: "São Paulo",
+    city: "Presidente Prudente",
+    university: "UNESP",
     campus: "FCT",
     course: "Ciência da Computação"
   },
@@ -78,6 +95,9 @@ var veteran_list = [
       "facebook.com/giovana",
       "instagram.com/giovana"
     ],
+    state: "São Paulo",
+    city: "Presidente Prudente",
+    university: "UNESP",
     campus: "FCT",
     course: "Ciência da Computação"
   },
@@ -89,6 +109,9 @@ var veteran_list = [
       "facebook.com/renata",
       "instagram.com/renata"
     ],
+    state: "São Paulo",
+    city: "Presidente Prudente",
+    university: "UNESP",
     campus: "FCT",
     course: "Ciência da Computação"
   }
@@ -98,78 +121,98 @@ var veteran_list = [
 //################# REP LIST
 var rep_list = [
   {
-    name: "Rep0_fera",
+    name: "República Devassas",
     id: 0,
     vacancy: 0,
     gender: "f",
-	phone: "(18) 987678980",
-    owner:veteran_list[2],
+    phone: "(18) 987678980",
+    state: "São Paulo",
+    city: "Presidente Prudente",
+    university: "UNESP",
+    campus: "FCT",
+    course: "Ciência da Computação",
+    owner: veteran_list[2],
     members: [
       freshman_list[0],
       freshman_list[3]
     ],
     address: {
-        street: "R. Osvaldo Nobre Bandeira, 79 - Jardim Aquinopolis",
-        city_state: "Pres. Prudente - SP",
-        location: {
-            lat: -22.133689,
-            lng: -51.410490
-        }
+      street: "R. Osvaldo Nobre Bandeira, 79 - Jardim Aquinopolis",
+      city_state: "Pres. Prudente - SP",
+      location: {
+        lat: -22.133689,
+        lng: -51.410490
+      }
     }
   },
   {
-    name: "Rep1_cacau",
+    name: "República Colmeia",
     id: 1,
     vacancy: 2,
     gender: "f",
-	phone: "(18) 987632980",
+    phone: "(18) 987632980",
+    state: "São Paulo",
+    city: "Presidente Prudente",
+    university: "UNESP",
+    campus: "FCT",
+    course: "Ciência da Computação",
     owner: veteran_list[3],
     members: [],
     address: {
-        street: "R. Caetés, 1 - Jardim Caiçara",
-        city_state: "Pres. Prudente - SP",
-        location: {
-            lat: -22.132188,
-            lng: -51.405523
-        }
+      street: "R. Caetés, 1 - Jardim Caiçara",
+      city_state: "Pres. Prudente - SP",
+      location: {
+        lat: -22.132188,
+        lng: -51.405523
+      }
     }
   },
   {
-    name: "Rep2_bexiga",
+    name: "República Geografia",
     id: 2,
     vacancy: 1,
     gender: "m",
-	phone: "(18) 981238980",
+    phone: "(18) 981238980",
     owner: veteran_list[0],
+    state: "São Paulo",
+    city: "Presidente Prudente",
+    university: "UNESP",
+    campus: "FCT",
+    course: "Geografia",
     members: [
       freshman_list[1],
     ],
     address: {
-        street: "R. Abdala Buchala, 116 - Jardim", 
-        city_state: "Pres. Prudente - SP",
-        location: {
-            lat: -22.121093,
-            lng: -51.412311
-        }
+      street: "R. Abdala Buchala, 116 - Jardim",
+      city_state: "Pres. Prudente - SP",
+      location: {
+        lat: -22.121093,
+        lng: -51.412311
+      }
     }
   },
   {
-    name: "Rep3_barriga",
+    name: "República da Computa",
     id: 3,
     vacancy: 4,
     gender: "m",
-	phone: "(18) 987600170",
+    phone: "(18) 987600170",
     owner: veteran_list[1],
+    state: "São Paulo",
+    city: "Presidente Prudente",
+    university: "UNESP",
+    campus: "FCT",
+    course: "Ciência da Computação",
     members: [
-        freshman_list[2]
+      freshman_list[2]
     ],
     address: {
-        street: "R. Artur Whitaker, 174 - Jardim Campo Belo", 
-        city_state: "Pres. Prudente - SP",
-        location: {
-            lat: -22.123717,
-            lng: -51.413888
-        }
+      street: "R. Artur Whitaker, 174 - Jardim Campo Belo",
+      city_state: "Pres. Prudente - SP",
+      location: {
+        lat: -22.123717,
+        lng: -51.413888
+      }
     }
   }
 ]
