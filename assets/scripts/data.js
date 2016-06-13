@@ -2,6 +2,7 @@
 //##################VARS####################
 var freshman_list = [
   {/*will be treated like outsider of Sao Paulo*/
+	id: 0,
     name: "Maria",
     email: "maria@mail.com",
     social_network: [
@@ -12,6 +13,7 @@ var freshman_list = [
     course: "Ciência da Computação"
   },
   {/*will be treated like outsider of prudente*/
+	id: 1,
     name: "Jorge",
     email: "jorge@mail.com",
     social_network: [
@@ -22,6 +24,7 @@ var freshman_list = [
     course: "Ciência da Computação"
   },
   {/* will be treated like outsider of campus*/
+	id: 2,
     name: "José",
     email: "jose@josemail.com",
     social_network: [
@@ -32,6 +35,7 @@ var freshman_list = [
     course: "Ciência da Computação"
   },
   {
+	id: 3,
     name: "Camila",
     email: "camila@mail.com",
     social_network: [
@@ -45,6 +49,7 @@ var freshman_list = [
 
 var veteran_list = [
   {
+	id: 0,
     name: "Gustavo",
     email: "gustavo@mail.com",
     social_network: [
@@ -55,6 +60,7 @@ var veteran_list = [
     course: "Geografia"
   },
   {
+	id: 1,
     name: "Gabriel",
     email: "gabriel@mail.com",
     social_network: [
@@ -65,6 +71,7 @@ var veteran_list = [
     course: "Ciência da Computação"
   },
   {
+	id: 2,
     name: "Giovana",
     email: "giovana@mail.com",
     social_network: [
@@ -75,6 +82,7 @@ var veteran_list = [
     course: "Ciência da Computação"
   },
   {
+	id: 3,
     name: "Renata",
     email: "renata@mail.com",
     social_network: [
@@ -278,63 +286,116 @@ function cleanRepublics()
   }
 }
 
-function populateVeterans(items)
-{
-  var list = document.getElementById("veteran_list");
-  // cleanVeterans();
+function getParameterByName(name, url) {
+    if (!url) url = window.location.href;
+    name = name.replace(/[\[\]]/g, "\\$&");
+    var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+        results = regex.exec(url);
+    if (!results) return null;
+    if (!results[2]) return '';
+    return decodeURIComponent(results[2].replace(/\+/g, " "));
+}
+console.log(getParameterByName('id'));
 
-  var elements = "";
-  for(var i = 0; i < items.length; i++)
-  {
-    // var element = '<form class="form_input panel-group">' +
-    // '<input type="hidden" name="which_form" value="affiliate">' +
-    // '<input type="hidden" name="" value="">' +
-    // '<input type="hidden" name="" value="">' +
-    // '<div class="input-group">' +
-    // '<div class="input-group-btn">' +
-    // '<button class="btn btn-default" type="button"><span class="glyphicon glyphicon-user"></span></button>' +
-    //
-    // '</div>' +
-    // '<input type="text" class="form-control"  value="' + items[i].name + '"readonly>' +
-    // '<div class="input-group-btn">' +
-    // '<button data-toggle="modal" data-target="#confirm-relationship-modal" class="btn btn-primary afiliate" type="button">Afiliar-se</button>' +
-    // '<button data-toggle="modal" data-target="#confirm-relationship-modal" class="btn btn-danger cancel" type="button">Cancelar</button>' +
-    // '</div>' +
-    // '</div>' +
-    // '</form>';
-    //
-    // elements += element;
-  }
-  list.innerHTML = list.innerHTML + elements;
-};
-function populateFreshmans(items)
-{
-  var list = document.getElementById("freshman_list");
-  // cleanFreshmans();
 
-  var elements = "";
-  for(var i = 0; i < items.length; i++)
-  {
-    // var element = '<form class="form_input panel-group">' +
-    // '<input type="hidden" name="which_form" value="affiliate">' +
-    // '<input type="hidden" name="" value="">' +
-    // '<input type="hidden" name="" value="">' +
-    // '<div class="input-group">' +
-    // '<div class="input-group-btn">' +
-    // '<button class="btn btn-default" type="button"><span class="glyphicon glyphicon-user"></span></button>' +
-    // '</div>' +
-    // '<input type="text" class="form-control"  value="' + items[i].name + '"readonly>' +
-    // '<div class="input-group-btn">' +
-    // '<button data-toggle="modal" data-target="#confirm-relationship-modal" class="btn btn-primary afiliate" type="button">Afiliar-se</button>' +
-    // '<button data-toggle="modal" data-target="#confirm-relationship-modal" class="btn btn-danger cancel" type="button">Cancelar</button>' +
-    // '</div>' +
-    // '</div>' +
-    // '</form>';
+var clickBtnConfirm = (function(id, kind, cancel){
+	var str_id = "btn_"+kind+id;
+	var str_cancel = "btn_cancel_"+kind+id; 
+	btn_kind = document.getElementById(str_id);
+	btn_cancel = document.getElementById(str_cancel);
+	if(cancel){
+		btn_cancel.classList.add('hide');
+		btn_kind.classList.remove('hide');
+	}
+	else{
+		btn_kind.classList.add('hide');
+		btn_cancel.classList.remove('hide');
+	}
+});
 
-    // elements += element;
-  }
-  list.innerHTML = list.innerHTML + elements;
-};
+
+
+var clickBtnCancel = (function(id, kind){
+	console.log(id);
+});
+
+
+var getPersonalModal = (function(id, kind, cancel){
+	modal = ''+
+	'<div class="modal fade" id="modal_'+cancel+kind+id+'" role="dialog" aria-hidden="true">'+
+	'	<div class="modal-dialog">'+
+	'	<div class="modal-content">'+
+	'		<div class="modal-header"><h3>Confirmação</h3></div>'+
+	'		<div class="modal-body">'+
+	'			Você realmente deseja alterar a relação'+
+	'		</div>'+
+	'		<div class="modal-footer">'+
+	'		<button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>'+
+	'		<button onclick="clickBtnConfirm(\''+id+'\', \''+kind+'\', \''+cancel+'\')" type="button" class="btn btn-success btn-ok" data-dismiss="modal">Confirmar</button>'+
+	'		</div>'+
+	'	</div>'+
+	'	</div>'+
+	'</div>';
+	return modal;
+});
+
+
+//item to be molded and returned, kind of freshman or veteran
+var populatePeaple = (function (item, kind)
+{	
+	var btn_text = '';
+	if (kind =="freshman"){
+		btn_text = "Apadrinhar";
+	}
+	else{
+		btn_text = "Afiliar-se";
+	}
+	var element = '<div class="well well-sm row profile">'+
+	'<div class="pull-left">'+
+	'	<img class="img-circle" src="assets/images/user.png" alt="" />'+
+	'</div>'+
+	'<div class="pull-left content">'+
+	'	<div><span class="title">'+item.name+' - '+item.course+' - </span><span><a href="profile.html?id='+item.id+'&kind='+kind+'">Ver Perfil</a></span></div>'+
+	'	<div>Campus: '+item.campus+'</div>'+
+	'	<div>e-mail: '+item.email+'</div>'+
+	'	<div>Redes sociais: <a href="www.facebook.com">Facebook</a> - <a href="www.instagran.com">Instagram</a></div>'+
+	'</div>'+
+	'<div class="pull-right">'+
+	'	<button id="btn_'+kind+item.id+'" data-toggle="modal" data-target="#modal_'+kind+item.id+'" class="btn btn-primary afiliate " type="button">'+btn_text+'</button>'+
+	'	<button id="btn_cancel_'+kind+item.id+'" data-toggle="modal" data-target="#modal_cancel'+kind+item.id+'" class="btn btn-danger cancel hide" type="button">Remover relação</button>'+
+	'</div>'+
+	getPersonalModal(item.id, kind, '')+
+	getPersonalModal(item.id, kind, 'cancel')+
+	'</div>';
+	return element;
+});
+
+
+//items of peaple, list to be inserted, kind of freshman or veteran
+var populatePeapleList = (function (items, list, kind){
+	var elements = "";
+	for(var i = 0; i < items.length; i++)
+	{ 
+		elements += populatePeaple(items[i], kind);
+	}
+	list.innerHTML += elements;
+});
+
+
+var populateVeterans = (function (items){
+	var list = document.getElementById("veteran_list");
+	cleanVeterans();
+	populatePeapleList(items, list, 'veteran');	
+});
+
+
+var populateFreshmans = (function (items){
+	var list = document.getElementById("freshman_list");
+	cleanFreshmans();
+	populatePeapleList(items, list, 'freshman');
+});
+
+
 function populateFilters(list,selectId)
 {
   var selectList = document.getElementById(selectId);
@@ -439,7 +500,7 @@ var append_rep_html = (function(rep){
 	'		</div>'+
 	'		<div class="members">'+
 	'		<label for="">Representante:</label>'+
-	assemb_string_member(rep.owner)+
+	populatePeaple(rep.owner)+
 	'</div>';
 	if (rep.members.length>0){
 		elements = elements +
@@ -448,7 +509,7 @@ var append_rep_html = (function(rep){
 		var member_string = '';
 		for (var i=0; i<rep.members.length; i++){
 			var member = rep.members[i];
-			member_string = member_string + assemb_string_member(member);		
+			member_string = member_string + populatePeaple(member);		
 		}
 		elements = elements + member_string;
 	}	
@@ -957,6 +1018,20 @@ function search_rep(str_search){
 
 
 //set the number of results
+var setRepublicNmb = (function(nmb){
+	badge = document.getElementById("republic-search-result");
+	badge.innerHTML = ''+nmb+'';
+})
+
+
+//set the number of results
+var setVeteranNmb = (function(nmb){
+	badge = document.getElementById("veteran-search-result");
+	badge.innerHTML = ''+nmb+'';
+})
+
+
+//set the number of results
 var setFreshmanNmb = (function(nmb){
 	badge = document.getElementById("freshman-search-result");
 	badge.innerHTML = ''+nmb+'';
@@ -973,6 +1048,8 @@ function general_search(str_search){
 	populateRepublic(rep_filtered_list);
 
 	setFreshmanNmb(fresh_filtered_list.length);
+	setVeteranNmb(vet_filtered_list.length);
+	setRepublicNmb(rep_filtered_list.length);
 	hide_all();
 	for (var i=0; i< rep_filtered_list.length; i++){
 		marker_list[rep_filtered_list[i].id].setMap(map);
@@ -990,13 +1067,13 @@ $(document).ready(function()
 {
 	populateFilters([{name:"Todos"},{name:"São Paulo"},{name:"Rio de Janeiro"}],"estado");
 	getDataState("Todos");
-
-	// populateVeterans(veteran_from_state());
+	
 	populateFreshmans(freshman_list);
 	populateVeterans(veteran_list);
 
 	// NEED TO CREATE THE JSON OF THE REPUBLICS AND PASS AS PARAMETER IN THE BELOW INVOCATION.
 	load_rep_list();
 	populateRepublic(rep_list);
+	general_search('');
 });
 
