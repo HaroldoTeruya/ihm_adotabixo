@@ -121,7 +121,7 @@ var veteran_list = [
 //################# REP LIST
 var rep_list = [
   {
-    name: "República Devassas",
+    name: "Devassas",
     id: 0,
     vacancy: 0,
     gender: "f",
@@ -146,7 +146,7 @@ var rep_list = [
     }
   },
   {
-    name: "República Colmeia",
+    name: "Colmeia",
     id: 1,
     vacancy: 2,
     gender: "f",
@@ -168,7 +168,7 @@ var rep_list = [
     }
   },
   {
-    name: "República Geografia",
+    name: "Geografia",
     id: 2,
     vacancy: 1,
     gender: "m",
@@ -599,6 +599,44 @@ var populateRepublic = (function(list){
 });
 
 
+var populateRepublicMarkers = (function(list){
+    hide_all();
+	for(var i=0; i<list.length; i++){
+		list[i].marker.setMap(map);
+	}
+});
+//filter the number of vacancy
+var check_vacancy = (function(list, value) {
+
+	var aux_list = [];
+	for (var i = 0; i<list.length;i++){
+		if (list[i].vacancy>=value){
+			aux_list.push(list[i]);
+		}
+	}
+	return aux_list.slice();
+});
+
+
+//filter with gender
+var check_gender = (function(list, male, female){
+	var aux_list = [];
+	if (male){
+		for (var i = 0; i<list.length;i++){
+			if (list[i].gender=='m'){
+				aux_list.push(list[i]);
+			}
+		}
+	}
+	if (female){
+		for (var i = 0; i<list.length;i++){
+			if (list[i].gender=='f'){
+				aux_list.push(list[i]);
+			}
+		}
+	}
+	return aux_list.slice();
+});
 
 
 //var state
@@ -635,7 +673,7 @@ var filter_all = (function(){
 
 	var city = document.getElementById("cidade");
 	var cityValue = city.options[city.selectedIndex].value;
-  
+
 	var university = document.getElementById("universidade");
 	var universityValue = university.options[university.selectedIndex].value;
 
@@ -678,15 +716,68 @@ var filter_all = (function(){
 	//set badge value
 	setFreshmanNmb(freshman_list_aux.length);
 
-	//populateVeterans(vet_filtered_list);
-	//populateRepublic(rep_filtered_list);
+	//########## veteran_search
+	//filtering state
+	if (stateValue != "Todos" && stateValue !="Não possui dados"){
+		veteran_list_aux = filter_search(veteran_list_aux,'state',stateValue);
+	}
+	//filtering city
+	if (cityValue != "Todos" && cityValue !="Não possui dados"){
+		veteran_list_aux = filter_search(veteran_list_aux,'city', cityValue);
+	}
+	//filtering university
+	if (universityValue != "Todos" && universityValue !="Não possui dados"){
+		veteran_list_aux = filter_search(veteran_list_aux, 'university', universityValue);
+	}
+	//filtering campus
+	if (campusValue != "Todos" && campusValue !="Não possui dados"){
+		veteran_list_aux = filter_search(veteran_list_aux, 'campus', campusValue);
+	}
+	//filtering course
+	if (courseValue != "Todos" && courseValue !="Não possui dados"){
+		veteran_list_aux = filter_search(veteran_list_aux, 'course', courseValue);
+	}
+	//searching text
+	veteran_list_aux = search_name_like_list(veteran_list_aux, search_value);
+	//populate veteran
+	populateVeterans(veteran_list_aux);
+	//set badge value
+	setVeteranNmb(veteran_list_aux.length);
 
-	//setVeteranNmb(vet_filtered_list.length);
-	//setRepublicNmb(rep_filtered_list.length);
 
-	
+	//########## rep_search
+	//filtering state
+	if (stateValue != "Todos" && stateValue !="Não possui dados"){
+		rep_list_aux = filter_search(rep_list_aux,'state',stateValue);
+	}
+	//filtering city
+	if (cityValue != "Todos" && cityValue !="Não possui dados"){
+		rep_list_aux = filter_search(rep_list_aux,'city', cityValue);
+	}
+	//filtering university
+	if (universityValue != "Todos" && universityValue !="Não possui dados"){
+		rep_list_aux = filter_search(rep_list_aux, 'university', universityValue);
+	}
+	//filtering campus
+	if (campusValue != "Todos" && campusValue !="Não possui dados"){
+		rep_list_aux = filter_search(rep_list_aux, 'campus', campusValue);
+	}
+	//filtering course
+	if (courseValue != "Todos" && courseValue !="Não possui dados"){
+		rep_list_aux = filter_search(rep_list_aux, 'course', courseValue);
+	}
+	//searching text
+	rep_list_aux = search_name_like_list(rep_list_aux, search_value);
 
- 
+    //only_rep_filters
+    rep_list_aux = check_vacancy (rep_list_aux, vacancy);
+    rep_list_aux = check_gender(rep_list_aux, male, female);
+
+	//populate rep
+	populateRepublic(rep_list_aux);
+    populateRepublicMarkers(rep_list_aux);
+	//set badge value
+	setRepublicNmb(rep_list_aux.length);
 });
 // POPULATING STATE
 function getDataState(title)
@@ -1030,6 +1121,7 @@ var load_rep_list = (function() {
 										"in");
 			});
 		});
+        rep_list[i]['marker'] = marker;
 		info_list.push(info_window);
 		marker_list.push(marker);
 	}
@@ -1052,110 +1144,26 @@ function show_all()
   }
 }
 
-var check_gender = (function(male, female){
-	var aux_list = [];
-	if (male){
-		for (var i = 0; i<rep_list.length;i++){
-			if (rep_list[i].gender=='m'){
-				aux_list.push(rep_list[i]);
-			}
-		}		
-	}
-	if (female){
-		for (var i = 0; i<rep_list.length;i++){
-			if (rep_list[i].gender=='f'){
-				aux_list.push(rep_list[i]);
-			}
-		}		
-	}
-	current_rep_list = aux_list;
-});
-function show_female(){
-  //show_all();
-  marker_list[0].setMap(map);
-  marker_list[1].setMap(map);
-}
-function hide_female(){
-  //show_all();
-  marker_list[0].setMap(null);
-  marker_list[1].setMap(null);
-}
-function show_male(){
-  //show_all();
-  marker_list[2].setMap(map);
-  marker_list[3].setMap(map);
-}
-function hide_male(){
-  //show_all();
-  marker_list[2].setMap(null);
-  marker_list[3].setMap(null);
-}
-function hide_less_than4()
-{
-  //show_all();
-  marker_list[0].setMap(null);
-  marker_list[1].setMap(null);
-  marker_list[2].setMap(null);
-}
-
 var reSearch = (function(){
 	ipt_value = document.getElementById("ipt_search").value;
 	general_search(ipt_value);
 });
 
 $("#ckb_female").change(function() {
-  if(this.checked) {
-    show_female();
-  }
-  else{
-    hide_female();
-  }
-	male = document.getElementById("ckb_male").checked;
-	female = document.getElementById("ckb_female").checked;
-	console.log(male);
-	console.log(female);
-	check_gender(male,female);
-	reSearch();
+    filter_all();
 });
 $("#ckb_male").change(function() {
-  if(this.checked) {
-    show_male();
-  }
-  else{
-    hide_male();
-  }
-	male = document.getElementById("ckb_male").checked;
-	female = document.getElementById("ckb_female").checked;
-	check_gender(male,female);
-	reSearch();
-});
-
-var nmb_vacancy_changed = (function(value) {
-
-	hide_all();
-	var aux_list = [];
-	for (var i = 0; i<rep_list.length;i++){
-		if (rep_list[i].vacancy>=value){
-			aux_list.push(rep_list[i]);
-			marker_list[i].setMap(map);
-		}
-	}		
-	current_rep_list = aux_list;
-	reSearch();
+    filter_all();
 });
 
 
 $("#nmb_vacancy").keyup(function() {
-
-	nmb_vacancy_changed(this.value);
-
+    filter_all();
 });
 
 
 $("#nmb_vacancy").change(function() {
-
-	nmb_vacancy_changed(this.value);
-
+    filter_all();
 });
 
 
@@ -1219,43 +1227,22 @@ var setFreshmanNmb = (function(nmb){
 })
 
 
-// do a general search 
-function general_search(str_search){
-	vet_filtered_list = search_veteran(str_search);
-	fresh_filtered_list = search_freshman(str_search);
-	rep_filtered_list = search_rep(str_search);
-	populateVeterans(vet_filtered_list);
-	populateFreshmans(fresh_filtered_list);
-	populateRepublic(rep_filtered_list);
-
-	setFreshmanNmb(fresh_filtered_list.length);
-	setVeteranNmb(vet_filtered_list.length);
-	setRepublicNmb(rep_filtered_list.length);
-	hide_all();
-	for (var i=0; i< rep_filtered_list.length; i++){
-		marker_list[rep_filtered_list[i].id].setMap(map);
-	}
-};
-
-
 $("#ipt_search").keyup(function() {
 	show_timeout_pi();
 	filter_all();
-	//general_search(this.value);
 });
 
 
 $(document).ready(function()
 {
+	load_rep_list();
+    console.log(rep_list);
 	populateFilters([{name:"Todos"},{name:"São Paulo"},{name:"Rio de Janeiro"}],"estado");
 	getDataState("Todos");
-	
 	populateFreshmans(freshman_list);
 	populateVeterans(veteran_list);
-
-	// NEED TO CREATE THE JSON OF THE REPUBLICS AND PASS AS PARAMETER IN THE BELOW INVOCATION.
-	load_rep_list();
 	populateRepublic(rep_list);
-	general_search('');
+
+    filter_all();
 });
 
