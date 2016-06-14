@@ -24,302 +24,337 @@
 </head>
 <body>
 
-  <nav class="navbar navbar-default navbar-fixed-top">
-    <a class="navbar-brand" href="#">AdotaBixo</a>
+  <header class="navbar navbar-default navbar-fixed-top bs-docs-nav" role="banner" style="background-color: #d9edf7; border-bottom: 1px solid #bce8f1">
+    <div class="container">
+      <div class="navbar-header">
+        <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".bs-navbar-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="/">Adota Bixo</a>
+      </div>
+      <nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
+        <ul class="nav navbar-nav">
+        </ul>
+
+        <ul class="nav navbar-nav navbar-right">
+          <li class="">
+            <a class="" href="#">Seu nome</a>
+          </li>
+
+          <li class="dropdown open">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true"><span class="glyphicon glyphicon-user"></span> <strong class="caret"></strong></a>
+            <ul class="dropdown-menu">
+              <li>
+                <a href="#"><span class="glyphicon glyphicon-paperclip"></span> Apadrinhamento </a>
+              </li>
+              <li>
+                <a href="#"><span class="glyphicon glyphicon-refresh"></span> Perfil</a>
+              </li>
+              <li class="divider"></li>
+              <li>
+                <a href="#"><span class="glyphicon glyphicon-off"></span> Sair</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+<div id="wrapper">
+
+  <!-- Sidebar -->
+  <nav class="navbar navbar-inverse navbar-fixed-top" id="sidebar-wrapper" role="navigation">
+    <ul class="nav sidebar-nav">
+
+      <div class="well well-sm">
+        <p>Estado:</p>
+        <select class="form-control" id="estado" name="" onChange="getDataState(this.value);"></select>
+      </div>
+
+      <div class="well well-sm">
+        <p>Cidade:</p>
+        <select class="form-control" id="cidade" name="" onChange="getDataCity(this.value);"></select>
+      </div>
+
+      <div class="well well-sm">
+        <p>Universidade:</p>
+        <select class="form-control" id="universidade" name="" onChange="getDataUnivesity(this.value);"></select>
+      </div>
+
+      <div class="well well-sm">
+        <p>Campus:</p>
+        <select class="form-control" id="campus" name="" onChange="getDataCampus(this.value);"></select>
+      </div>
+
+      <div class="well well-sm">
+        <p>Curso:</p>
+        <select class="form-control" id="curso" name="" onChange="getDataCourse(this.value);"></select>
+      </div>
+
+    </ul>
   </nav>
 
-  <div id="wrapper">
+  <!-- Page Content -->
+  <div id="page-content-wrapper">
 
-    <!-- Sidebar -->
-    <nav class="navbar navbar-inverse navbar-fixed-top" id="sidebar-wrapper" role="navigation">
-      <ul class="nav sidebar-nav">
+    <button type="button" class="hamburger is-closed" data-toggle="offcanvas">
+      <span class="hamb-top"></span>
+      <span class="hamb-middle"></span>
+      <span class="hamb-bottom"></span>
+    </button>
 
-        <div class="well well-sm">
-          <p>Estado:</p>
-          <select class="form-control" id="estado" name="" onChange="getDataState(this.value);"></select>
+    <div class="">
+
+      <!-- SEARCH BOX -->
+      <div class="col-lg-12">
+        <div class="input-group form-group">
+          <input id="ipt_search" type="text" class="form-control" placeholder="Procurar por nome de Bixo/Veterano/República" style="top: 1px">
+          <span class="input-group-btn">
+            <button id="search_all" class="btn btn-default glyphicon glyphicon-search" type="button"></button>
+          </span>
         </div>
+      </div>
 
-        <div class="well well-sm">
-          <p>Cidade:</p>
-          <select class="form-control" id="cidade" name="" onChange="getDataCity(this.value);"></select>
-        </div>
-
-        <div class="well well-sm">
-          <p>Universidade:</p>
-          <select class="form-control" id="universidade" name="" onChange="getDataUnivesity(this.value);"></select>
-        </div>
-
-        <div class="well well-sm">
-          <p>Campus:</p>
-          <select class="form-control" id="campus" name="" onChange="getDataCampus(this.value);"></select>
-        </div>
-
-        <div class="well well-sm">
-          <p>Curso:</p>
-          <select class="form-control" id="curso" name="" onChange="getDataCourse(this.value);"></select>
-        </div>
-
-      </ul>
-    </nav>
-
-    <!-- Page Content -->
-    <div id="page-content-wrapper">
-
-      <button type="button" class="hamburger is-closed" data-toggle="offcanvas">
-        <span class="hamb-top"></span>
-        <span class="hamb-middle"></span>
-        <span class="hamb-bottom"></span>
-      </button>
-
-      <div class="">
-
-        <!-- SEARCH BOX -->
-        <div class="col-lg-12">
-          <div class="input-group form-group">
-            <input id="ipt_search" type="text" class="form-control" placeholder="Procurar por nome de Bixo/Veterano/República" style="top: 1px">
-            <span class="input-group-btn">
-              <button id="search_all" class="btn btn-default glyphicon glyphicon-search" type="button"></button>
-            </span>
+      <!-- NAV TAB PANEL -->
+      <div class="col-lg-12">
+        <div class="panel with-nav-tabs panel-default">
+          <div class="panel-heading">
+            <ul class="nav nav-tabs nav-justified">
+              <li>
+                <a href="#tab1default" data-toggle="tab">Bixos <span id="freshman-search-result" class="badge">2</span></a>
+              </li>
+              <li>
+                <a href="#tab2default" data-toggle="tab">Veteranos  <span id="veteran-search-result" class="badge">2</span></a>
+              </li>
+              <li class="active"><a href="#tab3default" data-toggle="tab">Repúblicas  <span id="republic-search-result" class="badge">2</span></a>
+              </li>
+            </ul>
           </div>
-        </div>
+          <div class="panel-body" style="padding-bottom:0">
+            <div class="tab-content">
 
-        <!-- NAV TAB PANEL -->
-        <div class="col-lg-12">
-          <div class="panel with-nav-tabs panel-default">
-            <div class="panel-heading">
-              <ul class="nav nav-tabs nav-justified">
-                <li>
-                  <a href="#tab1default" data-toggle="tab">Bixos <span id="freshman-search-result" class="badge">2</span></a>
-                </li>
-                <li>
-                  <a href="#tab2default" data-toggle="tab">Veteranos  <span id="veteran-search-result" class="badge">2</span></a>
-                </li>
-                <li class="active"><a href="#tab3default" data-toggle="tab">Repúblicas  <span id="republic-search-result" class="badge">2</span></a>
-                </li>
-              </ul>
-            </div>
-            <div class="panel-body" style="padding-bottom:0">
-              <div class="tab-content">
+              <div class="tab-pane fade in" id="tab1default">
+                <div class="col-lg-12">
 
-                <div class="tab-pane fade in" id="tab1default">
-                  <div class="col-lg-12">
-
-				<!--Progress Indicator-->
-                  <div class="hide pi">
-                      <h1 class="text-center">
-                        <span class="glyphicon glyphicon-refresh spin"></span>
-                      </h1>
-                    </div>
-
-                    <!-- BIXOS LIST -->
-                    <div class="" id="freshman_list">
-
-                      <div class="well well-sm row profile">
-                        <div class="pull-left">
-                          <img class="img-circle" src="assets/images/user.png" alt="" />
-                        </div>
-                        <div class="pull-left content">
-                          <div><span class="title">Nome - FCT - </span><span><a href="#">Ver Perfil</a></span></div>
-                          <div>Ciência da Computação</div>
-                          <div class="">
-                            <span><a href="#">e-mail</a></span>
-                            <span> - </span>
-                            <span>3234-3234</span>
-                            <span> - </span>
-                            <span>Vamo que vamo!</span>
-                          </div>
-                        </div>
-                        <div class="pull-right">
-                          <button data-toggle="modal" data-target="#confirm-relationship-modal" class="btn btn-primary afiliate" type="button">Afiliar-se</button>
-                          <button data-toggle="modal" data-target="#confirm-relationship-modal" class="btn btn-danger cancel" type="button">Cancelar</button>
-                        </div>
-                      </div>
-
-                      <div class="well well-sm row profile">
-                        <div class="pull-left">
-                          <img class="img-circle" src="assets/images/user.png" alt="" />
-                        </div>
-                        <div class="pull-left content">
-                          <div><span class="title">Nome - FCT - </span><span><a href="#">Ver Perfil</a></span></div>
-                          <div>Ciência da Computação</div>
-                          <div class="">
-                            <span><a href="#">e-mail</a></span>
-                            <span> - </span>
-                            <span>3234-3234</span>
-                            <span> - </span>
-                            <span>Vamo que vamo!</span>
-                          </div>
-                        </div>
-                        <div class="pull-right">
-                          <button data-toggle="modal" data-target="#confirm-relationship-modal" class="btn btn-primary afiliate" type="button">Afiliar-se</button>
-                          <button data-toggle="modal" data-target="#confirm-relationship-modal" class="btn btn-danger cancel" type="button">Cancelar</button>
-                        </div>
-                      </div>
-
-                      <div class="well well-sm row profile">
-                        <div class="pull-left">
-                          <img class="img-circle" src="assets/images/user.png" alt="" />
-                        </div>
-                        <div class="pull-left content">
-                          <div><span class="title">Nome - FCT - </span><span><a href="#">Ver Perfil</a></span></div>
-                          <div>Ciência da Computação</div>
-                          <div class="">
-                            <span><a href="#">e-mail</a></span>
-                            <span> - </span>
-                            <span>3234-3234</span>
-                            <span> - </span>
-                            <span>Vamo que vamo!</span>
-                          </div>
-                        </div>
-                        <div class="pull-right">
-                          <button data-toggle="modal" data-target="#confirm-relationship-modal" class="btn btn-primary afiliate" type="button">Afiliar-se</button>
-                          <button data-toggle="modal" data-target="#confirm-relationship-modal" class="btn btn-danger cancel" type="button">Cancelar</button>
-                        </div>
-                      </div>
-
-                    </div>
-
-                  </div>
-                </div>
-
-                <div class="tab-pane fade" id="tab2default">
-                  <div class="col-lg-12">
-
-				<!--Progress Indicator-->
-                  <div class="hide pi">
-                      <h1 class="text-center">
-                        <span class="glyphicon glyphicon-refresh spin"></span>
-                      </h1>
-                    </div>
-
-                    <!-- VETERAN LIST -->
-                    <div class="" id="veteran_list">
-
-
-                      <div class="well well-sm row profile">
-                        <div class="pull-left">
-                          <img class="img-circle" src="assets/images/user.png" alt="" />
-                        </div>
-                        <div class="pull-left content">
-                          <div><span class="title">Nome - FCT - </span><span><a href="#">Ver Perfil</a></span></div>
-                          <div>Ciência da Computação</div>
-                          <div class="">
-                            <span><a href="#">e-mail</a></span>
-                            <span> - </span>
-                            <span>3234-3234</span>
-                            <span> - </span>
-                            <span>Vamo que vamo!</span>
-                          </div>
-                        </div>
-                        <div class="pull-right">
-                          <button data-toggle="modal" data-target="#confirm-relationship-modal" class="btn btn-primary afiliate" type="button">Afiliar-se</button>
-                          <button data-toggle="modal" data-target="#confirm-relationship-modal" class="btn btn-danger cancel" type="button">Cancelar</button>
-                        </div>
-                      </div>
-
-                      <div class="well well-sm row profile">
-                        <div class="pull-left">
-                          <img class="img-circle" src="assets/images/user.png" alt="" />
-                        </div>
-                        <div class="pull-left content">
-                          <div><span class="title">Nome - FCT - </span><span><a href="#">Ver Perfil</a></span></div>
-                          <div>Ciência da Computação</div>
-                          <div class="">
-                            <span><a href="#">e-mail</a></span>
-                            <span> - </span>
-                            <span>3234-3234</span>
-                            <span> - </span>
-                            <span>Vamo que vamo!</span>
-                          </div>
-                        </div>
-                        <div class="pull-right">
-                          <button data-toggle="modal" data-target="#confirm-relationship-modal" class="btn btn-primary afiliate" type="button">Afiliar-se</button>
-                          <button data-toggle="modal" data-target="#confirm-relationship-modal" class="btn btn-danger cancel" type="button">Cancelar</button>
-                        </div>
-                      </div>
-
-                    </div>
-
-                  </div>
-                </div>
-
-                <div class="tab-pane fade in active" id="tab3default">
-				<!--Progress Indicator-->
+                  <!--Progress Indicator-->
                   <div class="hide pi">
                     <h1 class="text-center">
                       <span class="glyphicon glyphicon-refresh spin"></span>
                     </h1>
                   </div>
 
-                  <div class="col-sm-6 form-group">
-                    <h5> Exibir repúblicas: </h5>
-                    <input id="ckb_male" type="checkbox" name="male" value="male" checked> Masculina
-                    <input id="ckb_female" type="checkbox" name="female" value="female" checked> Feminina
+                  <!-- BIXOS LIST -->
+                  <div class="" id="freshman_list">
+
+                    <div class="well well-sm row profile">
+                      <div class="pull-left">
+                        <img class="img-circle" src="assets/images/user.png" alt="" />
+                      </div>
+                      <div class="pull-left content">
+                        <div><span class="title">Nome - FCT - </span><span><a href="#">Ver Perfil</a></span></div>
+                        <div>Ciência da Computação</div>
+                        <div class="">
+                          <span><a href="#">e-mail</a></span>
+                          <span> - </span>
+                          <span>3234-3234</span>
+                          <span> - </span>
+                          <span>Vamo que vamo!</span>
+                        </div>
+                      </div>
+                      <div class="pull-right">
+                        <button data-toggle="modal" data-target="#confirm-relationship-modal" class="btn btn-primary afiliate" type="button">Afiliar-se</button>
+                        <button data-toggle="modal" data-target="#confirm-relationship-modal" class="btn btn-danger cancel" type="button">Cancelar</button>
+                      </div>
+                    </div>
+
+                    <div class="well well-sm row profile">
+                      <div class="pull-left">
+                        <img class="img-circle" src="assets/images/user.png" alt="" />
+                      </div>
+                      <div class="pull-left content">
+                        <div><span class="title">Nome - FCT - </span><span><a href="#">Ver Perfil</a></span></div>
+                        <div>Ciência da Computação</div>
+                        <div class="">
+                          <span><a href="#">e-mail</a></span>
+                          <span> - </span>
+                          <span>3234-3234</span>
+                          <span> - </span>
+                          <span>Vamo que vamo!</span>
+                        </div>
+                      </div>
+                      <div class="pull-right">
+                        <button data-toggle="modal" data-target="#confirm-relationship-modal" class="btn btn-primary afiliate" type="button">Afiliar-se</button>
+                        <button data-toggle="modal" data-target="#confirm-relationship-modal" class="btn btn-danger cancel" type="button">Cancelar</button>
+                      </div>
+                    </div>
+
+                    <div class="well well-sm row profile">
+                      <div class="pull-left">
+                        <img class="img-circle" src="assets/images/user.png" alt="" />
+                      </div>
+                      <div class="pull-left content">
+                        <div><span class="title">Nome - FCT - </span><span><a href="#">Ver Perfil</a></span></div>
+                        <div>Ciência da Computação</div>
+                        <div class="">
+                          <span><a href="#">e-mail</a></span>
+                          <span> - </span>
+                          <span>3234-3234</span>
+                          <span> - </span>
+                          <span>Vamo que vamo!</span>
+                        </div>
+                      </div>
+                      <div class="pull-right">
+                        <button data-toggle="modal" data-target="#confirm-relationship-modal" class="btn btn-primary afiliate" type="button">Afiliar-se</button>
+                        <button data-toggle="modal" data-target="#confirm-relationship-modal" class="btn btn-danger cancel" type="button">Cancelar</button>
+                      </div>
+                    </div>
+
                   </div>
-                  <div class="col-sm-6 form-group">
-                    <h5> Numero de vagas maior ou igual a: </h5>
-                    <input id="nmb_vacancy" type="number" name="points" min="0" max="100" step="1" value="0">
+
+                </div>
+              </div>
+
+              <div class="tab-pane fade" id="tab2default">
+                <div class="col-lg-12">
+
+                  <!--Progress Indicator-->
+                  <div class="hide pi">
+                    <h1 class="text-center">
+                      <span class="glyphicon glyphicon-refresh spin"></span>
+                    </h1>
                   </div>
-                  <div class="col-lg-12" style="position: inherit;">
-                    <div id="map" class="map_canvas"></div>
+
+                  <!-- VETERAN LIST -->
+                  <div class="" id="veteran_list">
+
+
+                    <div class="well well-sm row profile">
+                      <div class="pull-left">
+                        <img class="img-circle" src="assets/images/user.png" alt="" />
+                      </div>
+                      <div class="pull-left content">
+                        <div><span class="title">Nome - FCT - </span><span><a href="#">Ver Perfil</a></span></div>
+                        <div>Ciência da Computação</div>
+                        <div class="">
+                          <span><a href="#">e-mail</a></span>
+                          <span> - </span>
+                          <span>3234-3234</span>
+                          <span> - </span>
+                          <span>Vamo que vamo!</span>
+                        </div>
+                      </div>
+                      <div class="pull-right">
+                        <button data-toggle="modal" data-target="#confirm-relationship-modal" class="btn btn-primary afiliate" type="button">Afiliar-se</button>
+                        <button data-toggle="modal" data-target="#confirm-relationship-modal" class="btn btn-danger cancel" type="button">Cancelar</button>
+                      </div>
+                    </div>
+
+                    <div class="well well-sm row profile">
+                      <div class="pull-left">
+                        <img class="img-circle" src="assets/images/user.png" alt="" />
+                      </div>
+                      <div class="pull-left content">
+                        <div><span class="title">Nome - FCT - </span><span><a href="#">Ver Perfil</a></span></div>
+                        <div>Ciência da Computação</div>
+                        <div class="">
+                          <span><a href="#">e-mail</a></span>
+                          <span> - </span>
+                          <span>3234-3234</span>
+                          <span> - </span>
+                          <span>Vamo que vamo!</span>
+                        </div>
+                      </div>
+                      <div class="pull-right">
+                        <button data-toggle="modal" data-target="#confirm-relationship-modal" class="btn btn-primary afiliate" type="button">Afiliar-se</button>
+                        <button data-toggle="modal" data-target="#confirm-relationship-modal" class="btn btn-danger cancel" type="button">Cancelar</button>
+                      </div>
+                    </div>
+
                   </div>
-                  <div class="col-lg-12">
-                    <!-- REPUBLIC LIST -->
-                    <ul class="list-group" id="republic_list">
-                    </ul> <!-- REBILIC LIST -->
-                  </div>
+
+                </div>
+              </div>
+
+              <div class="tab-pane fade in active" id="tab3default">
+                <!--Progress Indicator-->
+                <div class="hide pi">
+                  <h1 class="text-center">
+                    <span class="glyphicon glyphicon-refresh spin"></span>
+                  </h1>
+                </div>
+
+                <div class="col-sm-6 form-group">
+                  <h5> Exibir repúblicas: </h5>
+                  <input id="ckb_male" type="checkbox" name="male" value="male" checked> Masculina
+                  <input id="ckb_female" type="checkbox" name="female" value="female" checked> Feminina
+                </div>
+                <div class="col-sm-6 form-group">
+                  <h5> Numero de vagas maior ou igual a: </h5>
+                  <input id="nmb_vacancy" type="number" name="points" min="0" max="100" step="1" value="0">
+                </div>
+                <div class="col-lg-12" style="position: inherit;">
+                  <div id="map" class="map_canvas"></div>
+                </div>
+                <div class="col-lg-12">
+                  <!-- REPUBLIC LIST -->
+                  <ul class="list-group" id="republic_list">
+                  </ul> <!-- REBILIC LIST -->
                 </div>
               </div>
             </div>
           </div>
-          <div id="end">
-          </div>
         </div>
-        
+        <div id="end">
+        </div>
       </div>
-    </div>
 
+    </div>
   </div>
 
-  <!-- CONFIRM MODEL -->
-  <div class="modal fade" id="confirm-relationship-modal" role="dialog" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header"><h3>Confirmação</h3></div>
-        <div class="modal-body">
-            Você realmente deseja adicionar a relação
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-          <button type="button" class="btn btn-success btn-ok" data-dismiss="modal">Confirmar</button>
-        </div>
+</div>
+
+<!-- CONFIRM MODEL -->
+<div class="modal fade" id="confirm-relationship-modal" role="dialog" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header"><h3>Confirmação</h3></div>
+      <div class="modal-body">
+        Você realmente deseja adicionar a relação
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+        <button type="button" class="btn btn-success btn-ok" data-dismiss="modal">Confirmar</button>
       </div>
     </div>
-  </div><!-- END CONFIRM MODEL -->
+  </div>
+</div><!-- END CONFIRM MODEL -->
 
-  <!-- <script type="text/javascript" src="jquery-1.12.3.min.js"></script> -->
-  <!-- <script src="http://netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script> -->
-  <script src="http://maps.google.com/maps/api/js?sensor=false" type="text/javascript"></script>
-  <!-- <script type="text/javascript" src="multiple_point.js"></script> -->
-  <script type="text/javascript" src="assets/scripts/data.js"></script>
-  <script type="text/javascript" src="waypoint/lib/noframework.waypoints.min.js"></script>
-  <script type="text/javascript" src="assets/scripts/sidebar.js"></script>
-  <script>
-  $( document ).ready( function() {
-    $( "#update" ).on( "click", function( e ) {
-          var $icon = $( this ).find( ".icon-refresh" ),
-            animateClass = "icon-refresh-animate";
+<!-- <script type="text/javascript" src="jquery-1.12.3.min.js"></script> -->
+<!-- <script src="http://netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script> -->
+<script src="http://maps.google.com/maps/api/js?sensor=false" type="text/javascript"></script>
+<!-- <script type="text/javascript" src="multiple_point.js"></script> -->
+<script type="text/javascript" src="assets/scripts/data.js"></script>
+<script type="text/javascript" src="waypoint/lib/noframework.waypoints.min.js"></script>
+<script type="text/javascript" src="assets/scripts/sidebar.js"></script>
+<script>
+$( document ).ready( function() {
+  $( "#update" ).on( "click", function( e ) {
+    var $icon = $( this ).find( ".icon-refresh" ),
+    animateClass = "icon-refresh-animate";
 
-          $icon.addClass( animateClass );
-          // setTimeout is to indicate some async operation
-          window.setTimeout( function() {
-            $icon.removeClass( animateClass );
-          }, 2000 );
-      });
-    });
-  </script>
-  <!-- <script type="text/javascript" src="assets/scripts/jquery.toaster.js"></script> -->
-  <!-- <script type="text/javascript" src="assets/scripts/toaster.js"></script> -->
+    $icon.addClass( animateClass );
+    // setTimeout is to indicate some async operation
+    window.setTimeout( function() {
+      $icon.removeClass( animateClass );
+    }, 2000 );
+  });
+});
+</script>
+<!-- <script type="text/javascript" src="assets/scripts/jquery.toaster.js"></script> -->
+<!-- <script type="text/javascript" src="assets/scripts/toaster.js"></script> -->
 
 </body>
 </html>
