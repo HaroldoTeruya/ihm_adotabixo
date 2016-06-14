@@ -237,18 +237,3 @@ var current_freshman_list = freshman_list;
 
 var current_veteran_list = veteran_list;
 
-//# marker list for google map
-var marker_list = [];
-
-// # info window list
-var info_list = [];
-
-// # map var
-var map = new google.maps.Map(document.getElementById('map'), {
-  zoom: 14,
-  center: new google.maps.LatLng(-22.125519, -51.404074),
-  mapTypeId: google.maps.MapTypeId.ROADMAP
-});
-
-var no_data = [{name:"Não possui dados"}];
-

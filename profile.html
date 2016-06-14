@@ -18,7 +18,7 @@
 <body>
 
   <nav class="navbar navbar-default navbar-fixed-top">
-    <a class="navbar-brand" href="#">AdotaBixo</a>
+    <a class="navbar-brand" href="index.html">AdotaBixo</a>
   </nav>
 
   <!-- Page Content -->
@@ -27,13 +27,13 @@
     <!-- Portfolio Item Heading -->
     <div class="row">
       <div class="col-lg-12">
-        <h1 class="page-header">Nome
+          <h1 class="page-header"><span id="prof_name"></span>
           <small> - </small>
-          <small>FCT</small>
+          <small id="prof_campus"></small>
           <small> - </small>
-          <small>Ciência da Computação</small>
+          <small id="prof_university"></small>
           <small> - </small>
-          <small>5˚ ano</small>
+          <small id="prof_course"></small>
         </h1>
       </div>
     </div>
@@ -48,16 +48,18 @@
 
       <div class="col-md-4">
         <h3>Descrição</h3>
+        <p>Essa é uma descrição estática igual para todos os perfis</p>
         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae. Sed dui lorem, adipiscing in adipiscing et, interdum nec metus. Mauris ultricies, justo eu convallis placerat, felis enim.</p>
         <h3>Detalhes</h3>
         <div class="list-group">
           <div class="list-group-item">
-            <h5 class="list-group-item-heading">Cidade natal:</h5>
-            <p class="list-group-item-text">Piracicaba - SP.</p>
+            <strong class="list-group-item-heading">Email:</strong>
+            <span id="prof_email" class="list-group-item-text"></span>
           </div>
           <div class="list-group-item">
-            <h5 class="list-group-item-heading">Mora em:</h5>
-            <p class="list-group-item-text">Casa da dia.</p>
+            <strong class="list-group-item-heading">Redes Sociais:</strong>
+            <p class="list-group-item-text"> <a target="_blank" href='www.facebook.com'>Facebook</a></p>
+            <p class="list-group-item-text"> <a target="_blank" href='www.instagram.com'>Instagram</a></p>
           </div>
         </div>
       </div>
