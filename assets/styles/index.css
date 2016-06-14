@@ -183,7 +183,12 @@ html {
     #tab3default .list-group .panel-group .panel-body .members .profile {
       color: #777;
       padding: 0 !important;
-      overflow: auto; }
+      overflow: auto;
+      margin-left: 10px !important;
+      margin-right: 10px !important; }
+      #tab3default .list-group .panel-group .panel-body .members .profile .afiliate, #tab3default .list-group .panel-group .panel-body .members .profile .cancel {
+        margin-top: 10px !important;
+        margin-right: 10px !important; }
       #tab3default .list-group .panel-group .panel-body .members .profile img {
         background-color: white;
         padding: 10px;
@@ -196,7 +201,7 @@ html {
 .map_canvas {
   display: block;
   width: 100%;
-  height: 250px;
+  height: 400px;
   margin-bottom: 15px; }
 
 .panel-default > .panel-heading .badge {
