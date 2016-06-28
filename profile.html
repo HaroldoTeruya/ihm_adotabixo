@@ -16,11 +16,41 @@
 </head>
 
 <body>
+  <header class="navbar navbar-default navbar-fixed-top bs-docs-nav" role="banner">
+    <div class="container">
+      <div class="navbar-header">
+        <button title="Botão para menu responsivo" alt="Menu Responsivo" class="navbar-toggle" type="button" data-toggle="collapse" data-target=".bs-navbar-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" title="Link para página inicial" href="index.html">Adota Bixo</a>
+      </div>
+      <nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
+        <ul class="nav navbar-nav">
+        </ul>
 
-  <nav class="navbar navbar-default navbar-fixed-top">
-    <a class="navbar-brand" href="index.html">AdotaBixo</a>
-  </nav>
+        <ul class="nav navbar-nav navbar-right">
+          <li class="">
+            <a class="" title="link para página do perfil" href="profile.html?kind=freshman&id=4">Nome do Usuário</a>
+          </li>
 
+          <li class="dropdown open">
+            <a href="#" title='Botão do Menu' class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true"><span class="glyphicon glyphicon-user"></span> <strong class="caret"></strong></a>
+            <ul class="dropdown-menu">
+              <li>
+                <a title='link para a página do perfil' href="profile.html?kind=freshman&id=4"><span class="glyphicon glyphicon-refresh"></span> Perfil</a>
+              </li>
+              <li class="divider"></li>
+              <li>
+                <a title="link para fazer logout" href="#"><span class="glyphicon glyphicon-off"></span> Sair</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </header>
   <!-- Page Content -->
   <div class="container profile" id="wrapper">
 
@@ -58,8 +88,8 @@
           </div>
           <div class="list-group-item">
             <strong class="list-group-item-heading">Redes Sociais:</strong>
-            <p class="list-group-item-text"> <a target="_blank" href='http://www.facebook.com'>Facebook</a></p>
-            <p class="list-group-item-text"> <a target="_blank" href='http://www.instagram.com'>Instagram</a></p>
+            <p class="list-group-item-text"> <a title="Link para o Facebook do usuário" target="_blank" href='http://www.facebook.com'>Facebook</a></p>
+            <p class="list-group-item-text"> <a title="Link para o Instagram do usuário" target="_blank" href='http://www.instagram.com'>Instagram</a></p>
           </div>
         </div>
       </div>

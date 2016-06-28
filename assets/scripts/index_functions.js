@@ -150,8 +150,8 @@ var getPersonalModal = (function(id, kind, cancel){
 	'			Você realmente deseja alterar a relação'+
 	'		</div>'+
 	'		<div class="modal-footer">'+
-	'		<button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>'+
-	'		<button onclick="clickBtnConfirm(\''+id+'\', \''+kind+'\', \''+cancel+'\')" type="button" class="btn btn-success btn-ok" data-dismiss="modal">Confirmar</button>'+
+	'		<button title="Botão para cancelar a relação" type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>'+
+	'		<button title="Botão para confirmar a relação" onclick="clickBtnConfirm(\''+id+'\', \''+kind+'\', \''+cancel+'\')" type="button" class="btn btn-success btn-ok" data-dismiss="modal">Confirmar</button>'+
 	'		</div>'+
 	'	</div>'+
 	'	</div>'+
@@ -162,7 +162,7 @@ var getPersonalModal = (function(id, kind, cancel){
 
 //item to be molded and returned, kind of freshman or veteran
 var populatePeaple = (function (item, kind)
-{	
+{
 	var btn_text = '';
 	if (kind =="freshman"){
 		btn_text = "Apadrinhar";
@@ -172,17 +172,17 @@ var populatePeaple = (function (item, kind)
 	}
 	var element = '<div class="well well-sm row profile">'+
 	'<div class="pull-left">'+
-	'	<img class="img-circle" src="assets/images/user.png" alt="" />'+
+	'	<img class="img-circle" title="Imagem do Perfil" alt="Imagem do Perfil" src="assets/images/user.png" alt="" />'+
 	'</div>'+
 	'<div class="pull-left content">'+
-	'	<div><span class="title">'+item.name+' - '+item.course+' - </span><span><a href="profile.html?id='+item.id+'&kind='+kind+'">Ver Perfil</a></span></div>'+
+	'	<div><span class="title">'+item.name+' - '+item.course+' - </span><span><a title="Link do Perfil" href="profile.html?id='+item.id+'&kind='+kind+'">Ver Perfil</a></span></div>'+
 	'	<div>Campus: '+item.campus+'</div>'+
 	'	<div>e-mail: '+item.email+'</div>'+
-	'	<div>Redes sociais: <a href="www.facebook.com">Facebook</a> - <a href="www.instagran.com">Instagram</a></div>'+
+	'	<div>Redes sociais: <a title="Link para o Facebook do usuário" href="www.facebook.com">Facebook</a> - <a title="Link para o Instagram do usuário" href="www.instagran.com">Instagram</a></div>'+
 	'</div>'+
 	'<div class="pull-right">'+
-	'	<button id="btn_'+kind+item.id+'" data-toggle="modal" data-target="#modal_'+kind+item.id+'" class="btn btn-primary afiliate " type="button">'+btn_text+'</button>'+
-	'	<button id="btn_cancel_'+kind+item.id+'" data-toggle="modal" data-target="#modal_cancel'+kind+item.id+'" class="btn btn-danger cancel hide" type="button">Remover relação</button>'+
+	'	<button title="Botão para '+btn_text+'" id="btn_'+kind+item.id+'" data-toggle="modal" data-target="#modal_'+kind+item.id+'" class="btn btn-primary afiliate " type="button">'+btn_text+'</button>'+
+	'	<button title="Botão para cancelar relação" id="btn_cancel_'+kind+item.id+'" data-toggle="modal" data-target="#modal_cancel'+kind+item.id+'" class="btn btn-danger cancel hide" type="button">Remover relação</button>'+
 	'</div>'+
 	getPersonalModal(item.id, kind, '')+
 	getPersonalModal(item.id, kind, 'cancel')+
@@ -279,10 +279,10 @@ var assemb_string_member = (function(member){
 	var assemb_string = 
 		'		<div class="well well-sm profile">'+
 		'			<div class="pull-left">'+
-		'			<img class="img-circle" src="assets/images/user.png" alt="" />'+
+		'			<img title="Imagem do Perfil" alt="Imagem do Perfil" class="img-circle" src="assets/images/user.png" alt="" />'+
 		'			</div>'+
 		'			<div class="pull-left content">'+
-		'			<div><span class="title">'+ member.name +' - '+ member.campus +' - </span><span><a href="#">Ver Perfil</a></span></div>'+
+		'			<div><span class="title">'+ member.name +' - '+ member.campus +' - </span><span><a title="Link para página de perfil" href="#">Ver Perfil</a></span></div>'+
 		'			<div>'+ member.course +'</div>'+
 		'			</div>'+
 		'		</div>';
@@ -308,15 +308,15 @@ var append_rep_html = (function(rep){
 	'<div class="">'+
 	'			<div class="title">'+
 	'				<span>'+
-	'					<img class="logo" src="assets/images/home-page.png" alt="" />' +
+	'					<img class="logo" title="Imagem da Logo da República" alt="Imagem da Logo da República" src="assets/images/home-page.png" alt="" />' +
 	'				</span>'+
 	'				<strong> '+ rep.name +'</strong>'+
 	'				<span> - </span>'+
 	'			</div>'+
 	'			<span>'+
-	'				<a id="rep_on_map'+ rep.id +'" onclick="click_map_on_rep('+rep.id+')"  element_id="'+ rep.id +'" href="#map">Ver no mapa</a>'+
+	'				<a title="Link para a localização da república no mapa do google" id="rep_on_map'+ rep.id +'" onclick="click_map_on_rep('+rep.id+')"  element_id="'+ rep.id +'" href="#map">Ver no mapa</a>'+
 	'			</span>'+
-	'			<a class="detail" data-toggle="collapse" href="#collapse'+ rep.id +'">Mais detalhes</a>'+
+	'			<a title="link para ver mais detalhes da república" class="detail" data-toggle="collapse" href="#collapse'+ rep.id +'">Mais detalhes</a>'+
 	'		</div>'+
 	'	</div>'+
 	'	</div>'+
@@ -868,7 +868,7 @@ var load_rep_list = (function() {
 			content: "<p><b>" + rep_list[i].name + "</b></p>" +
 				"<p>" + rep_list[i].address.street + "</p>" +
 				"<p>" +  rep_list[i].address.city_state + "</p>" +
-				"<p><a id='link_rep" + i + "' href='#rep" + i + "'"+
+				"<p><a title='link para mais informações da república' id='link_rep" + i + "' href='#rep" + i + "'"+
 				" element_id='"+ i +"'>" +
 				"Mais Informações</a></p>"});
 		var marker = new google.maps.Marker({

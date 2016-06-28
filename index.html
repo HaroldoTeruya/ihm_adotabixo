@@ -27,12 +27,12 @@
   <header class="navbar navbar-default navbar-fixed-top bs-docs-nav" role="banner">
     <div class="container">
       <div class="navbar-header">
-        <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".bs-navbar-collapse">
+        <button title="Botão para menu responsivo" alt="Menu Responsivo" class="navbar-toggle" type="button" data-toggle="collapse" data-target=".bs-navbar-collapse">
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="/">Adota Bixo</a>
+        <a class="navbar-brand" title="Link para página inicial" href="/">Adota Bixo</a>
       </div>
       <nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
         <ul class="nav navbar-nav">
@@ -40,18 +40,18 @@
 
         <ul class="nav navbar-nav navbar-right">
           <li class="">
-            <a class="" href="profile.html?kind=freshman&id=4">Letícia</a>
+            <a class="" title="link para página do perfil" href="profile.html?kind=freshman&id=4">Letícia</a>
           </li>
 
           <li class="dropdown open">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true"><span class="glyphicon glyphicon-user"></span> <strong class="caret"></strong></a>
+            <a href="#" title='Botão do Menu' class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true"><span class="glyphicon glyphicon-user"></span> <strong class="caret"></strong></a>
             <ul class="dropdown-menu">
               <li>
-                <a href="profile.html?kind=freshman&id=4"><span class="glyphicon glyphicon-refresh"></span> Perfil</a>
+                <a title='link para a página do perfil' href="profile.html?kind=freshman&id=4"><span class="glyphicon glyphicon-refresh"></span> Perfil</a>
               </li>
               <li class="divider"></li>
               <li>
-                <a href="#"><span class="glyphicon glyphicon-off"></span> Sair</a>
+                <a title="link para fazer logout" href="#"><span class="glyphicon glyphicon-off"></span> Sair</a>
               </li>
             </ul>
           </li>
@@ -67,28 +67,38 @@
     <ul class="nav sidebar-nav">
 
       <div class="well well-sm">
-        <p>Estado:</p>
-        <select class="form-control" id="estado" name="" onChange="getDataState(this.value);"></select>
+        <label for="estado">
+            <p>Estado:</p>
+            <select class="form-control" id="estado" name="" onChange="getDataState(this.value);"></select>
+        </label>
       </div>
 
       <div class="well well-sm">
-        <p>Cidade:</p>
-        <select class="form-control" id="cidade" name="" onChange="getDataCity(this.value);"></select>
+        <label for="cidade">
+            <p>Cidade:</p>
+            <select class="form-control" id="cidade" name="" onChange="getDataCity(this.value);"></select>
+        </label>
       </div>
 
       <div class="well well-sm">
-        <p>Universidade:</p>
-        <select class="form-control" id="universidade" name="" onChange="getDataUnivesity(this.value);"></select>
+        <label for="universidade">
+            <p>Universidade:</p>
+            <select class="form-control" id="universidade" name="" onChange="getDataUnivesity(this.value);"></select>
+        </label>
       </div>
 
       <div class="well well-sm">
-        <p>Campus:</p>
-        <select class="form-control" id="campus" name="" onChange="getDataCampus(this.value);"></select>
+        <label for="campus">
+            <p>Campus:</p>
+            <select class="form-control" id="campus" name="" onChange="getDataCampus(this.value);"></select>
+        </label>
       </div>
 
       <div class="well well-sm">
-        <p>Curso:</p>
-        <select class="form-control" id="curso" name="" onChange="getDataCourse(this.value);"></select>
+        <label for="curso">
+            <p>Curso:</p>
+            <select class="form-control" id="curso" name="" onChange="getDataCourse(this.value);"></select>
+        </label>
       </div>
 
     </ul>
@@ -97,7 +107,7 @@
   <!-- Page Content -->
   <div id="page-content-wrapper">
 
-    <button type="button" class="hamburger is-closed" data-toggle="offcanvas">
+    <button type="button" alt="Menu de Filtros" title="Botão para menu de filtros" class="hamburger is-closed" data-toggle="offcanvas">
       <span class="hamb-top"></span>
       <span class="hamb-middle"></span>
       <span class="hamb-bottom"></span>
@@ -108,9 +118,9 @@
       <!-- SEARCH BOX -->
       <div class="col-lg-12">
         <div class="input-group form-group">
-          <input id="ipt_search" type="text" class="form-control" placeholder="Procurar por nome de Bixo/Veterano/República" style="top: 1px">
+          <input title="Escreva o nome de um Bixo, Veterano ou República para pesquisar" id="ipt_search" type="text" class="form-control" placeholder="Procurar por nome de Bixo/Veterano/República" style="top: 1px">
           <span class="input-group-btn">
-            <button id="search_all" class="btn btn-default glyphicon glyphicon-search" type="button"></button>
+            <button alt="Pesquisar" title="Botão para pesquisar bixos, veteranos ou repúblicas" id="search_all" class="btn btn-default glyphicon glyphicon-search" type="button"></button>
           </span>
         </div>
       </div>
@@ -121,12 +131,12 @@
           <div class="panel-heading">
             <ul class="nav nav-tabs nav-justified">
               <li>
-                <a href="#tab1default" data-toggle="tab">Bixos <span id="freshman-search-result" class="badge">2</span></a>
+                <a title="link para painel de bixos" href="#tab1default" data-toggle="tab">Bixos <span id="freshman-search-result" class="badge">2</span></a>
               </li>
               <li>
-                <a href="#tab2default" data-toggle="tab">Veteranos  <span id="veteran-search-result" class="badge">2</span></a>
+                <a title="link para painel de veteranos" href="#tab2default" data-toggle="tab">Veteranos  <span id="veteran-search-result" class="badge">2</span></a>
               </li>
-              <li class="active"><a href="#tab3default" data-toggle="tab">Repúblicas  <span id="republic-search-result" class="badge">2</span></a>
+              <li class="active"><a title="link para painel de repúblicas" href="#tab3default" data-toggle="tab">Repúblicas  <span id="republic-search-result" class="badge">2</span></a>
               </li>
             </ul>
           </div>
@@ -151,10 +161,10 @@
                         <img class="img-circle" src="assets/images/user.png" alt="" />
                       </div>
                       <div class="pull-left content">
-                        <div><span class="title">Nome - FCT - </span><span><a href="#">Ver Perfil</a></span></div>
+                        <div><span class="title">Nome - FCT - </span><span><a title="link para o perfil" href="#">Ver Perfil</a></span></div>
                         <div>Ciência da Computação</div>
                         <div class="">
-                          <span><a href="#">e-mail</a></span>
+                          <span><a title="link para a rede social" href="#">e-mail</a></span>
                           <span> - </span>
                           <span>3234-3234</span>
                           <span> - </span>
@@ -285,15 +295,21 @@
 
                 <div class="col-sm-6 form-group">
                   <h5> Exibir repúblicas: </h5>
-                  <input id="ckb_male" type="checkbox" name="male" value="male" checked> Masculina
-                  <input id="ckb_female" type="checkbox" name="female" value="female" checked> Feminina
+                    <label for="ckb_male">
+                        <input id="ckb_male" type="checkbox" name="male" value="male" checked> Masculina
+                    </label>
+                    <label for="ckb_female">
+                        <input id="ckb_female" type="checkbox" name="female" value="female" checked> Feminina
+                    </label>
                 </div>
                 <div class="col-sm-6 form-group">
-                  <h5> Numero de vagas maior ou igual a: </h5>
-                  <input id="nmb_vacancy" type="number" name="points" min="0" max="100" step="1" value="0">
+                    <label for="nmb_vacancy">
+                        <h5> Numero de vagas maior ou igual a: </h5>
+                        <input id="nmb_vacancy" type="number" name="points" min="0" max="100" step="1" value="0">
+                    </label>
                 </div>
                 <div class="col-lg-12" style="position: inherit;">
-                  <div id="map" class="map_canvas"></div>
+                  <div title="mapa do google maps" alt="Mapa do Google" id="map" class="map_canvas"></div>
                 </div>
                 <div class="col-lg-12">
                   <!-- REPUBLIC LIST -->
@@ -322,8 +338,8 @@
         Você realmente deseja adicionar a relação
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-        <button type="button" class="btn btn-success btn-ok" data-dismiss="modal">Confirmar</button>
+        <button title="Botão para cancelar a relação" type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+        <button title="Botão para confirmar a relação" type="button" class="btn btn-success btn-ok" data-dismiss="modal">Confirmar</button>
       </div>
     </div>
   </div>
